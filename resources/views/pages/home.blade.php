@@ -126,34 +126,159 @@
         </div>
     </section>
 
-    <!-- TICKER MARQUEE (MITRA REKANAN BUMN & INSTANSI) -->
-    <section class="bg-white py-6 border-b border-slate-100 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 mb-3 text-center">
-            <span class="text-xs font-bold text-slate-400 tracking-wider uppercase">
-                Telah Dipercaya Oleh 100+ BUMN, Instansi Pemerintah, Kampus & Sekolah
+    <!-- TICKER MARQUEE 2 BARIS (MITRA BUMN, INSTANSI, KAMPUS & SEKOLAH) -->
+    <section class="bg-white py-10 border-b border-slate-100 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 mb-6 text-center">
+            <span class="inline-flex items-center space-x-2 text-xs font-bold text-[#0284C7] bg-sky-50 px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                <svg class="w-4 h-4 text-[#0284C7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <span>Telah Dipercaya Oleh 100+ BUMN, Instansi Pemerintah, Kampus & Sekolah</span>
             </span>
         </div>
-        <div class="relative w-full overflow-hidden">
-            <div class="animate-marquee flex items-center space-x-12 whitespace-nowrap py-2">
-                @foreach($partners as $partner)
-                    <div class="flex items-center space-x-2 text-slate-600 font-bold text-sm bg-slate-50 px-4 py-2 rounded-xl border border-slate-200/60 shadow-sm shrink-0">
-                        <span class="w-2 h-2 rounded-full bg-[#0284C7]"></span>
-                        <span>{{ $partner->name }}</span>
-                        <span class="text-[10px] font-medium text-slate-400 px-1.5 py-0.5 bg-slate-200/60 rounded">
-                            {{ $partner->category }}
-                        </span>
-                    </div>
-                @endforeach
-                <!-- Duplicate for seamless looping -->
-                @foreach($partners as $partner)
-                    <div class="flex items-center space-x-2 text-slate-600 font-bold text-sm bg-slate-50 px-4 py-2 rounded-xl border border-slate-200/60 shadow-sm shrink-0">
-                        <span class="w-2 h-2 rounded-full bg-[#0284C7]"></span>
-                        <span>{{ $partner->name }}</span>
-                        <span class="text-[10px] font-medium text-slate-400 px-1.5 py-0.5 bg-slate-200/60 rounded">
-                            {{ $partner->category }}
-                        </span>
-                    </div>
-                @endforeach
+
+        @php
+            $halfCount = ceil($partners->count() / 2);
+            $row1Partners = $partners->slice(0, $halfCount);
+            $row2Partners = $partners->slice($halfCount);
+        @endphp
+
+        <!-- Gradient blur overlays on edges for smooth fading -->
+        <div class="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none"></div>
+
+        <div class="space-y-4">
+            <!-- BARIS ATAS: Berjalan ke Kiri -->
+            <div class="relative w-full overflow-hidden">
+                <div class="animate-marquee flex items-center space-x-5 whitespace-nowrap py-1">
+                    @foreach($row1Partners as $partner)
+                        <div class="flex items-center space-x-3.5 bg-slate-50/90 hover:bg-white text-slate-700 px-5 py-3 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md hover:border-[#0284C7]/50 transition duration-300 shrink-0">
+                            <!-- Logo / Emblem Instansi -->
+                            @if($partner->logo_path)
+                                <img src="{{ $partner->logo_path }}" alt="{{ $partner->name }}" class="h-9 w-auto max-w-[42px] object-contain rounded-lg">
+                            @else
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-extrabold text-xs shadow-sm
+                                    {{ $partner->category === 'BUMN' ? 'bg-sky-600 text-white' : ($partner->category === 'Universitas' ? 'bg-[#0F2C59] text-amber-300' : ($partner->category === 'Sekolah' ? 'bg-emerald-600 text-white' : 'bg-amber-500 text-slate-900')) }}">
+                                    @if($partner->category === 'BUMN')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                    @elseif($partner->category === 'Universitas')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/></svg>
+                                    @elseif($partner->category === 'Sekolah')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                    @else
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+                                    @endif
+                                </div>
+                            @endif
+
+                            <!-- Nama & Kategori -->
+                            <div>
+                                <div class="font-extrabold text-xs sm:text-sm text-[#0F2C59] tracking-tight">
+                                    {{ $partner->name }}
+                                </div>
+                                <div class="text-[10px] font-semibold text-slate-400">
+                                    {{ $partner->category }}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <!-- Duplikasi Baris Atas untuk Seamless Loop -->
+                    @foreach($row1Partners as $partner)
+                        <div class="flex items-center space-x-3.5 bg-slate-50/90 hover:bg-white text-slate-700 px-5 py-3 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md hover:border-[#0284C7]/50 transition duration-300 shrink-0">
+                            @if($partner->logo_path)
+                                <img src="{{ $partner->logo_path }}" alt="{{ $partner->name }}" class="h-9 w-auto max-w-[42px] object-contain rounded-lg">
+                            @else
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-extrabold text-xs shadow-sm
+                                    {{ $partner->category === 'BUMN' ? 'bg-sky-600 text-white' : ($partner->category === 'Universitas' ? 'bg-[#0F2C59] text-amber-300' : ($partner->category === 'Sekolah' ? 'bg-emerald-600 text-white' : 'bg-amber-500 text-slate-900')) }}">
+                                    @if($partner->category === 'BUMN')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                    @elseif($partner->category === 'Universitas')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/></svg>
+                                    @elseif($partner->category === 'Sekolah')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                    @else
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+                                    @endif
+                                </div>
+                            @endif
+
+                            <div>
+                                <div class="font-extrabold text-xs sm:text-sm text-[#0F2C59] tracking-tight">
+                                    {{ $partner->name }}
+                                </div>
+                                <div class="text-[10px] font-semibold text-slate-400">
+                                    {{ $partner->category }}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- BARIS BAWAH: Berjalan ke Kanan (Arah Berlawanan) -->
+            <div class="relative w-full overflow-hidden">
+                <div class="animate-marquee-reverse flex items-center space-x-5 whitespace-nowrap py-1">
+                    @foreach($row2Partners as $partner)
+                        <div class="flex items-center space-x-3.5 bg-slate-50/90 hover:bg-white text-slate-700 px-5 py-3 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md hover:border-[#0284C7]/50 transition duration-300 shrink-0">
+                            <!-- Logo / Emblem Instansi -->
+                            @if($partner->logo_path)
+                                <img src="{{ $partner->logo_path }}" alt="{{ $partner->name }}" class="h-9 w-auto max-w-[42px] object-contain rounded-lg">
+                            @else
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-extrabold text-xs shadow-sm
+                                    {{ $partner->category === 'BUMN' ? 'bg-sky-600 text-white' : ($partner->category === 'Universitas' ? 'bg-[#0F2C59] text-amber-300' : ($partner->category === 'Sekolah' ? 'bg-emerald-600 text-white' : 'bg-amber-500 text-slate-900')) }}">
+                                    @if($partner->category === 'BUMN')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                    @elseif($partner->category === 'Universitas')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/></svg>
+                                    @elseif($partner->category === 'Sekolah')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                    @else
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+                                    @endif
+                                </div>
+                            @endif
+
+                            <div>
+                                <div class="font-extrabold text-xs sm:text-sm text-[#0F2C59] tracking-tight">
+                                    {{ $partner->name }}
+                                </div>
+                                <div class="text-[10px] font-semibold text-slate-400">
+                                    {{ $partner->category }}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <!-- Duplikasi Baris Bawah untuk Seamless Loop -->
+                    @foreach($row2Partners as $partner)
+                        <div class="flex items-center space-x-3.5 bg-slate-50/90 hover:bg-white text-slate-700 px-5 py-3 rounded-2xl border border-slate-200/70 shadow-sm hover:shadow-md hover:border-[#0284C7]/50 transition duration-300 shrink-0">
+                            @if($partner->logo_path)
+                                <img src="{{ $partner->logo_path }}" alt="{{ $partner->name }}" class="h-9 w-auto max-w-[42px] object-contain rounded-lg">
+                            @else
+                                <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-extrabold text-xs shadow-sm
+                                    {{ $partner->category === 'BUMN' ? 'bg-sky-600 text-white' : ($partner->category === 'Universitas' ? 'bg-[#0F2C59] text-amber-300' : ($partner->category === 'Sekolah' ? 'bg-emerald-600 text-white' : 'bg-amber-500 text-slate-900')) }}">
+                                    @if($partner->category === 'BUMN')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                    @elseif($partner->category === 'Universitas')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/></svg>
+                                    @elseif($partner->category === 'Sekolah')
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                    @else
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+                                    @endif
+                                </div>
+                            @endif
+
+                            <div>
+                                <div class="font-extrabold text-xs sm:text-sm text-[#0F2C59] tracking-tight">
+                                    {{ $partner->name }}
+                                </div>
+                                <div class="text-[10px] font-semibold text-slate-400">
+                                    {{ $partner->category }}
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </section>

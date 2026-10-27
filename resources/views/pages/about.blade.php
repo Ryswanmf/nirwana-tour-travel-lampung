@@ -172,11 +172,29 @@
             <p class="text-xs text-slate-500 mt-2">Daftar BUMN, dinas pemerintahan, universitas, dan sekolah yang telah mempercayakan perjalanan bersama kami.</p>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             @foreach($partners as $partner)
-                <div class="bg-white p-4 rounded-xl border border-slate-200/60 shadow-sm text-center flex flex-col justify-center items-center h-24">
-                    <span class="text-xs font-bold text-[#0F2C59] line-clamp-2">{{ $partner->name }}</span>
-                    <span class="text-[10px] text-[#0284C7] font-semibold mt-1">{{ $partner->category }}</span>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200/60 shadow-sm flex items-center space-x-3 hover:border-[#0284C7]/50 hover:shadow-md transition">
+                    @if($partner->logo_path)
+                        <img src="{{ $partner->logo_path }}" alt="{{ $partner->name }}" class="h-9 w-auto max-w-[40px] object-contain rounded-lg">
+                    @else
+                        <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 font-extrabold text-xs shadow-sm
+                            {{ $partner->category === 'BUMN' ? 'bg-sky-600 text-white' : ($partner->category === 'Universitas' ? 'bg-[#0F2C59] text-amber-300' : ($partner->category === 'Sekolah' ? 'bg-emerald-600 text-white' : 'bg-amber-500 text-slate-900')) }}">
+                            @if($partner->category === 'BUMN')
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                            @elseif($partner->category === 'Universitas')
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/></svg>
+                            @elseif($partner->category === 'Sekolah')
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            @else
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+                            @endif
+                        </div>
+                    @endif
+                    <div>
+                        <span class="text-xs font-bold text-[#0F2C59] line-clamp-1 block">{{ $partner->name }}</span>
+                        <span class="text-[10px] text-slate-400 font-semibold">{{ $partner->category }}</span>
+                    </div>
                 </div>
             @endforeach
         </div>

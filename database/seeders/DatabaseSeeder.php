@@ -53,18 +53,27 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // 3. Partners Marquee
+        // 3. Partners Marquee (16 Mitra untuk 2 Baris Atas & Bawah)
         $partners = [
+            // Baris Atas
             ['name' => 'PT PLN (Persero) UID Lampung', 'category' => 'BUMN', 'sort_order' => 1],
-            ['name' => 'PT Bukit Asam Tbk', 'category' => 'BUMN', 'sort_order' => 2],
-            ['name' => 'Dinas Pendidikan & Kebudayaan Prov. Lampung', 'category' => 'Instansi', 'sort_order' => 3],
-            ['name' => 'PT Semen Baturaja Tbk', 'category' => 'BUMN', 'sort_order' => 4],
-            ['name' => 'SMA Al-Kautsar Bandar Lampung', 'category' => 'Sekolah', 'sort_order' => 5],
-            ['name' => 'PT Pupuk Sriwidjaja (Pusri)', 'category' => 'BUMN', 'sort_order' => 6],
-            ['name' => 'UIN Raden Intan Lampung', 'category' => 'Universitas', 'sort_order' => 7],
-            ['name' => 'Universitas Lampung (UNILA)', 'category' => 'Universitas', 'sort_order' => 8],
-            ['name' => 'SMAN 2 Bandar Lampung', 'category' => 'Sekolah', 'sort_order' => 9],
-            ['name' => 'Bank Mandiri Taspen Lampung', 'category' => 'BUMN', 'sort_order' => 10],
+            ['name' => 'Universitas Lampung (UNILA)', 'category' => 'Universitas', 'sort_order' => 2],
+            ['name' => 'PT Bukit Asam Tbk', 'category' => 'BUMN', 'sort_order' => 3],
+            ['name' => 'SMAN 2 Bandar Lampung', 'category' => 'Sekolah', 'sort_order' => 4],
+            ['name' => 'Dinas Pendidikan & Kebudayaan Prov. Lampung', 'category' => 'Instansi', 'sort_order' => 5],
+            ['name' => 'Bank Mandiri Taspen Lampung', 'category' => 'BUMN', 'sort_order' => 6],
+            ['name' => 'PT ASDP Indonesia Ferry (Persero)', 'category' => 'BUMN', 'sort_order' => 7],
+            ['name' => 'Dinas Pariwisata & Ekonomi Kreatif Lampung', 'category' => 'Instansi', 'sort_order' => 8],
+
+            // Baris Bawah
+            ['name' => 'PT Semen Baturaja Tbk', 'category' => 'BUMN', 'sort_order' => 9],
+            ['name' => 'UIN Raden Intan Lampung', 'category' => 'Universitas', 'sort_order' => 10],
+            ['name' => 'SMA Al-Kautsar Bandar Lampung', 'category' => 'Sekolah', 'sort_order' => 11],
+            ['name' => 'PT Pupuk Sriwidjaja (Pusri)', 'category' => 'BUMN', 'sort_order' => 12],
+            ['name' => 'Institut Teknologi Sumatera (ITERA)', 'category' => 'Universitas', 'sort_order' => 13],
+            ['name' => 'PT Pertamina Geothermal Energy', 'category' => 'BUMN', 'sort_order' => 14],
+            ['name' => 'Bank Lampung', 'category' => 'BUMD', 'sort_order' => 15],
+            ['name' => 'Politeknik Negeri Lampung (POLINELA)', 'category' => 'Universitas', 'sort_order' => 16],
         ];
 
         foreach ($partners as $partner) {
