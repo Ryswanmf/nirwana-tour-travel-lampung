@@ -1,0 +1,237 @@
+PRODUCT REQUIREMENTS DOCUMENT (PRD) & MASTER AI PROMPT (LARAVEL 11 EDITION)
+
+Nama Proyek: Website Company Profile & Katalog Dinamis — Nirwana Tour Lampung
+
+Klien (Pihak Pertama): Nirwana Tour Lampung (Pimpinan: Kiki M Alfin)
+
+Pengembang (Pihak Kedua): Swift Code Lampung (Muhammad Riswan Mufid)
+
+Paket Layanan: Paket Premium (Multi-Page Dynamic Website + Custom CMS Login Admin)
+
+Nilai Kontrak: Rp 2.300.000,- / Tahun (DP 50%: Rp 1.150.000,- | Pelunasan 50%: Rp 1.150.000,-)
+
+Tech Stack Utama: Laravel 11 + MySQL + Tailwind CSS + Alpine.js + FilamentPHP v3 (Admin CMS)
+
+Tautan Referensi Purwarupa: https://nirwana-tour.vercel.app
+
+BAGIAN 1: SARAN ARSITEKTUR & STRATEGI LARAVEL (BEST PRACTICES)
+
+Menggunakan Laravel 11 untuk proyek senilai Rp2.300.000 dengan target pengerjaan 8 hari kerja adalah pilihan yang sangat tepat, cepat, dan menguntungkan, terutama karena mudah di-deploy di Shared/Cloud Hosting cPanel Indonesia (Hostinger, Niagahoster, Rumahweb, DomaiNesia, IDCloudHost) tanpa perlu biaya sewa VPS bulanan yang mahal.
+
+Berikut adalah 5 Saran Teknis Terbaik untuk pengerjaan proyek ini:
+
+1. Gunakan FilamentPHP v3 untuk CMS Login Admin (/admin)
+
+Kenapa? Jangan membuat halaman CRUD Admin dari nol secara manual. Dengan FilamentPHP v3, Anda bisa membuat halaman Login Admin, Dashboard Statistik, CRUD Paket Wisata, Upload Foto Galeri, dan Editor Artikel yang sangat modern hanya dalam waktu 2–3 jam.
+
+Fitur Unggulan untuk Travel: Filament memiliki komponen Repeater bawaan yang sangat cocok untuk membuat form input Jadwal Harian (Itinerary Hari 1, Hari 2, dst.) serta TagsInput untuk fasilitas Include/Exclude yang disimpan otomatis sebagai kolom JSON di MySQL.
+
+2. Gunakan Laravel Blade + Tailwind CSS + Alpine.js untuk Halaman Publik (Multi-Page)
+
+Kenapa? Sesuai kesepakatan terbaru bahwa website bukan single-page, melainkan Multi-Page Dinamis (bisa berpindah halaman), penggunaan Laravel Blade sangat cepat dimuat dan 100% ramah SEO Google.
+
+Gunakan Alpine.js (sangat ringan) untuk interaktivitas di dalam halaman seperti:
+
+Modal Pop-up Itinerary (saat tombol "Lihat Rundown" diklik).
+
+Lightbox Gallery (memperbesar foto kegiatan ke layar penuh).
+
+Accordion FAQ & Hamburger Menu Mobile.
+
+3. Simpan Itinerary & Fasilitas dalam Kolom JSON di Database MySQL
+
+Daripada membuat terlalu banyak tabel relasi yang rumit, pada tabel tour_packages, gunakan tipe data json untuk kolom itineraries, includes, dan excludes. Di Model TourPackage.php cukup tambahkan:
+
+protected $casts = [
+    'itineraries' => 'array',
+    'includes' => 'array',
+    'excludes' => 'array',
+    'is_featured' => 'boolean',
+    'is_active' => 'boolean',
+];
+
+
+4. Siapkan Tabel custom_pages untuk Fitur Tambahan yang Menyusul (Pasal 8 & Pasal 10)
+
+Karena pihak Nirwana Tour memiliki klausul fleksibel untuk menambahkan halaman/fitur baru yang saat ini belum ditentukan isinya, buatlah 1 tabel dinamis bernama custom_pages (title, slug, content, show_in_navbar, is_active).
+
+Saat klien meminta halaman baru di kemudian hari (misal: "Syarat & Ketentuan Sewa Bus" atau "Info Kunjungan Industri"), Anda atau admin cukup menambahkannya lewat CMS tanpa perlu mengubah kode program.
+
+5. Catatan Penting: Tanpa Fitur Kalkulator
+
+Sesuai kesepakatan kontrak final, tidak ada fitur Kalkulator Estimasi Biaya. Seluruh tombol aksi (CTA) pada kartu paket wisata dan halaman detail langsung mengarah ke WhatsApp Admin dengan format pesan otomatis (pre-filled message) yang mencantumkan nama paket yang dipilih pengunjung.
+
+BAGIAN 2: STRUKTUR HALAMAN PUBLIK (MULTI-PAGE DYNAMIC)
+
+Pengunjung dapat berpindah antar-halaman dengan URL yang bersih dan ramah SEO:
+
+Beranda (/)
+
+Hero Section: Tajuk "Jelajahi Dunia, Ciptakan Cerita Tak Terlupakan", badge komitmen (Legalitas Berizin Resmi, Armada Bus Nyaman & Terawat, Tour Leader Berpengalaman, 100% Kepuasan Terjamin), tombol CTA WhatsApp & Lihat Destinasi.
+
+Mitra & Klien Rekanan (Ticker Marquee): Animasi berjalan menampilkan daftar BUMN, Pemprov Lampung, Kampus, dan Sekolah yang pernah dilayani.
+
+Ringkasan Sambutan Pimpinan & Statistik: Kutipan hangat dari Bapak Kiki M Alfin beserta angka pencapaian (8+ Tahun Pengalaman, 1.500+ Trip Terlaksana, 99% Kepuasan Pelanggan, 100% Legalitas Resmi).
+
+Cuplikan 4 Layanan Utama & 6 Paket Wisata Unggulan (is_featured = true).
+
+Cuplikan Galeri Dokumentasi & Testimoni/FAQ Singkat.
+
+Halaman Tentang Kami (/tentang-kami)
+
+Profil lengkap Nirwana Tour Lampung, foto resmi & sambutan lengkap pimpinan, visi & misi, keunggulan perusahaan, serta daftar mitra instansi.
+
+Halaman Layanan (/layanan)
+
+Penjelasan detail 4 layanan utama: Paket Wisata Reguler, Study Tour Edukatif, Kunjungan Industri, dan Sewa Transportasi Rombongan (HiAce, Medium Bus, Big Bus) beserta tombol konsultasi WA per layanan.
+
+Halaman Katalog Paket Wisata (/paket-wisata)
+
+Menampilkan seluruh paket wisata dari database dengan fitur Filter Kategori Dinamis (Semua, Wisata Lampung, Nusantara, Edukasi, Sewa Armada) dan pencarian.
+
+Halaman Detail Paket & Itinerary (/paket-wisata/{slug})
+
+Halaman khusus per destinasi yang menampilkan foto utama, harga paket, durasi, daftar fasilitas Include & Exclude, rincian Rundown Harian (Hari 1, Hari 2, dst.), serta tombol "Pesan / Konsultasi Paket Ini via WhatsApp".
+
+Halaman Galeri Dokumentasi (/galeri)
+
+Menampilkan foto-foto dokumentasi perjalanan bersama klien yang dilengkapi fitur Lightbox (Perbesar Layar Penuh) beserta judul kegiatan, nama instansi klien, dan tanggal perjalanan.
+
+Halaman Artikel / Info Wisata (/artikel & /artikel/{slug})
+
+Halaman blog/berita dinamis untuk berbagi tips wisata, promo paket liburan, atau liputan perjalanan terbaru (sangat bagus untuk SEO Google).
+
+Halaman Kontak & FAQ (/kontak)
+
+Daftar pertanyaan umum (Accordion FAQ), alamat lengkap kantor, peta interaktif Google Maps, nomor telepon/WA, dan formulir pesan yang langsung terhubung ke WhatsApp Admin.
+
+Halaman Tambahan Fleksibel (/halaman/{slug})
+
+Rute dinamis untuk menampung halaman/fitur tambahan yang isinya baru akan diserahkan kemudian oleh pihak Nirwana Tour.
+
+BAGIAN 3: SKEMA DATABASE MYSQL (LARAVEL MIGRATIONS)
+
+Berikut adalah rancangan 9 tabel database (migrations) untuk sistem ini:
+
+users (Login Admin CMS)
+
+id, name, email, password, timestamps.
+
+tour_packages (Katalog Paket Wisata)
+
+id, title, slug (unique), category (lampung, nusantara, edukasi, armada), duration (string, contoh: 3 Hari 2 Malam), price (unsignedBigInteger), price_unit (string, default: / Orang), thumbnail (string), description (text), includes (json), excludes (json), itineraries (json), is_featured (boolean), is_active (boolean), timestamps.
+
+services (4 Layanan Utama)
+
+id, title, slug, icon (string), short_description (text), full_description (longText), whatsapp_text (string), sort_order (integer), is_active (boolean), timestamps.
+
+galleries (Galeri Dokumentasi & Lightbox)
+
+id, title, client_name (string, contoh: PT Bukit Asam / SMAN 2), category (string), image_path (string), trip_date (date, nullable), caption (text, nullable), is_active (boolean), timestamps.
+
+partners (Mitra BUMN, Instansi & Sekolah)
+
+id, name, logo_path (string, nullable), category (BUMN, Instansi, Sekolah, Universitas), sort_order (integer), is_active (boolean), timestamps.
+
+posts (Artikel & Promo)
+
+id, title, slug (unique), thumbnail (string), excerpt (text), content (longText), is_published (boolean), published_at (timestamp, nullable), timestamps.
+
+faqs (Tanya Jawab)
+
+id, question (string), answer (text), sort_order (integer), is_active (boolean), timestamps.
+
+custom_pages (Slot Fitur/Halaman Tambahan Menyusul)
+
+id, title, slug (unique), content (longText), meta_description (string, nullable), show_in_navbar (boolean, default: false), is_active (boolean, default: true), timestamps.
+
+site_settings (Pengaturan Profil, Sambutan Pimpinan, & Nomor WA)
+
+id, company_name, tagline, owner_name (Kiki M Alfin), owner_title (Pimpinan & Founder), owner_photo, owner_greeting (text), whatsapp_number, email, address, google_maps_embed (text), instagram_url, facebook_url, years_experience, total_trips, satisfaction_rate, timestamps.
+
+BAGIAN 4: MASTER PROMPT AI (SIAP COPY-PASTE KE CURSOR / WINDSURF / CLAUDE / CHATGPT)
+
+Salin seluruh kotak kode di bawah ini ke AI Coding Assistant Anda untuk menghasilkan kode proyek Laravel 11 secara otomatis dan terstruktur:
+
+Act as a Senior Full-Stack Laravel Developer & UI/UX Designer.
+Build a complete, production-ready Multi-Page Dynamic Company Profile & Tour Catalog Website for "Nirwana Tour Lampung" (Official Travel Agency in Lampung, Indonesia).
+
+### 1. TECH STACK & ARCHITECTURE
+- Framework: Laravel 11 (PHP 8.2+)
+- Database: MySQL
+- Admin Panel (CMS Login): FilamentPHP v3 (`/admin`) or clean custom Blade Admin Panel with Auth.
+- Frontend: Laravel Blade Templates + Tailwind CSS + Alpine.js (Multi-page routing, SEO-friendly, responsive mobile-first design).
+- Visual Reference: https://nirwana-tour.vercel.app
+- IMPORTANT RULE: DO NOT build a Budget Calculator / Cost Estimator feature. Instead, build a comprehensive Multi-Page Dynamic Website connected to a CMS Admin Login, where all booking CTAs redirect to WhatsApp with pre-filled messages.
+
+### 2. BRAND IDENTITY & DESIGN SYSTEM
+- Brand Name: Nirwana Tour Lampung
+- Slogan: "Jelajahi Dunia, Ciptakan Cerita Tak Terlupakan"
+- Owner / Pimpinan: Kiki M Alfin
+- Color Palette:
+  - Primary Ocean Blue: `#0284C7` (Sky-600)
+  - Deep Corporate Navy: `#0F2C59` (Slate-900 / Navy)
+  - Warm Gold / Amber Accent: `#F59E0B` (Amber-500)
+  - Clean Background: `#F8FAFC` & `#FFFFFF`
+- Typography: 'Plus Jakarta Sans' (Google Fonts), rounded-2xl cards, soft shadows, sticky navigation bar with active menu indicator, and floating WhatsApp button.
+
+### 3. DATABASE SCHEMA (MIGRATIONS, MODELS & SEEDERS)
+Create migrations, Eloquent models (with JSON casts), and realistic DatabaseSeeders (in Bahasa Indonesia) for:
+1. `site_settings`: company profile, owner name ("Kiki M Alfin"), owner greeting quote, stats (8+ Tahun Pengalaman, 1.500+ Trip Terlaksana, 99% Kepuasan Pelanggan, 100% Legalitas Resmi), WhatsApp number, address, Google Maps embed, social links.
+2. `partners`: client marquee list (PT PLN Persero, PT Bukit Asam Tbk, Dinas Pendidikan Prov. Lampung, PT Semen Baturaja Tbk, SMA Al-Kautsar Lampung, PT Pupuk Sriwidjaja, UIN Raden Intan).
+3. `services`: 4 main services (Paket Wisata Reguler, Study Tour Edukatif, Kunjungan Industri, Sewa Transportasi Rombongan).
+4. `tour_packages`: 9 initial packages with categories (`lampung`, `nusantara`, `edukasi`, `armada`), `title`, `slug`, `duration`, `price`, `price_unit`, `thumbnail`, `description`, `includes` (JSON array), `excludes` (JSON array), `itineraries` (JSON array of `{day, title, activities}`), `is_featured`, `is_active`.
+5. `galleries`: trip photo documentation with Lightbox support (`title`, `client_name`, `category`, `image_path`, `trip_date`, `caption`).
+6. `posts`: blog/articles for travel tips & promos.
+7. `faqs`: 6 common questions about booking, DP, bus facilities, and custom trips.
+8. `custom_pages`: flexible dynamic pages (`title`, `slug`, `content`, `show_in_navbar`, `is_active`) to accommodate future client features without changing code.
+
+### 4. MULTI-PAGE PUBLIC ROUTES & CONTROLLERS
+Create clean controllers and Blade views extending a master layout (`layouts/app.blade.php` with Sticky Navbar & Footer):
+- `GET /` (`HomeController@index`): Hero section, Partners Ticker Marquee, Owner Greeting & Company Stats, 4 Main Services, Featured Tour Packages (with Alpine.js Quick Itinerary Modal), Gallery Preview (with Lightbox), FAQ Accordion, and Contact CTA.
+- `GET /tentang-kami` (`PageController@about`): Full company profile, owner greeting, legalitas, vision & mission, and partner list.
+- `GET /layanan` (`PageController@services`): Detailed breakdown of the 4 core travel & bus rental services with direct WhatsApp consultation buttons.
+- `GET /paket-wisata` (`TourPackageController@index`): Full catalog of tour packages with category filter (`Semua`, `Wisata Lampung`, `Nusantara`, `Edukasi`, `Armada`) and search bar.
+- `GET /paket-wisata/{slug}` (`TourPackageController@show`): Dedicated detail page showing full day-by-day itinerary, include/exclude lists, price, related packages, and a direct WhatsApp booking button (`Halo Admin Nirwana Tour, saya tertarik berkonsultasi mengenai paket: {Nama Paket}...`).
+- `GET /galeri` (`GalleryController@index`): Full photo gallery grid with category filter and Alpine.js fullscreen Lightbox modal showing caption & client name.
+- `GET /artikel` & `GET /artikel/{slug}` (`PostController`): Blog listing and article reader page.
+- `GET /kontak` (`PageController@contact`): Interactive contact form (redirects/sends to WhatsApp), Google Maps embed, office info, and full FAQ list.
+- `GET /halaman/{slug}` (`CustomPageController@show`): Dynamic route for any additional pages created by Admin in the future.
+
+### 5. ADMIN CMS PANEL (`/admin`)
+Provide a complete FilamentPHP v3 setup (Resources) OR clean Admin CRUD controllers protected by Laravel Auth (`auth` middleware) so the client can easily:
+- Log in securely via `/admin/login`.
+- Manage (Create, Edit, Delete, Upload Image) Tour Packages including dynamic Repeater inputs for Day-by-Day Itineraries and Include/Exclude lists.
+- Manage Galleries, Services, Partners, Articles, FAQs, Custom Pages, and Site Settings (WhatsApp number, owner photo, etc.).
+
+Please generate:
+1. Complete Database Migrations & Seeders with realistic Nirwana Tour Lampung data.
+2. Models with proper `$fillable` and `$casts`.
+3. Public Controllers & `routes/web.php`.
+4. Master Layout (`app.blade.php`), Home View, Package Catalog View, Package Detail View, and Gallery Lightbox View using Tailwind CSS and Alpine.js.
+5. Step-by-step instructions to install and run the project locally and deploy to cPanel.
+
+
+BAGIAN 5: PANDUAN LANGKAH KERJA CEPAT (8 HARI KERJA)
+
+Agar pengerjaan selesai tepat waktu sesuai Pasal 6 Kontrak (8 Hari Kerja), ikuti urutan perintah Terminal berikut di komputer Anda:
+
+# 1. Buat project Laravel 11 baru
+composer create-project laravel/laravel nirwana-tour
+cd nirwana-tour
+
+# 2. Konfigurasi database di file .env (DB_DATABASE=nirwana_tour) lalu jalankan migrasi awal
+php artisan migrate
+
+# 3. Install FilamentPHP v3 untuk CMS Login Admin instan
+composer require filament/filament:"^3.2" -W
+php artisan filament:install --panels
+
+# 4. Buat akun Admin pertama untuk Nirwana Tour
+php artisan make:filament-user
+
+# 5. Aktifkan symlink agar foto yang diupload muncul di halaman depan
+php artisan storage:link
+
+
+Setelah instalasi dasar di atas selesai, gunakan Master Prompt pada Bagian 4 untuk men-generate seluruh tabel, data awal (Seeder), halaman Blade multi-page, serta form CRUD Filament. Website akan siap didemokan kepada Bapak Kiki M Alfin dalam waktu singkat!
