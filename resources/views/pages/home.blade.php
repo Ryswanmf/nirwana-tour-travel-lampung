@@ -26,50 +26,70 @@
     }
 }">
 
-    <!-- HERO SECTION (BESPOKE TOURISM STORYTELLING & THREE.JS 3D TRAVEL GLOBE) -->
+    <!-- HERO SECTION (INTERACTIVE 3D TOUR BUS DRIVING DIORAMA) -->
     <section class="relative bg-[#08101E] text-white overflow-hidden py-16 sm:py-20 lg:py-24 border-b border-white/5">
         <!-- Ambient Atmospheric Lighting Glows -->
         <div class="absolute -top-40 -left-40 w-96 h-96 bg-[#0284C7]/20 rounded-full blur-[128px] pointer-events-none"></div>
-        <div class="absolute top-1/2 right-10 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[140px] pointer-events-none"></div>
-        <div class="absolute -bottom-20 left-1/3 w-80 h-80 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/2 right-10 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute -bottom-20 left-1/3 w-80 h-80 bg-sky-500/10 rounded-full blur-[120px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
                 
                 <!-- Left Column: Editorial Tourism Storytelling & Action -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
                     
                     <!-- Official Badge -->
                     <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/[0.07] backdrop-blur-md border border-white/10 text-xs font-semibold text-amber-300 shadow-sm">
-                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                        <span>Official Tour & Transport Operator Lampung</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Biro Wisata Resmi & Sewa Bus Pariwisata Lampung</span>
                     </div>
 
                     <!-- Editorial Headline -->
-                    <h1 class="text-3xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight leading-[1.15]">
-                        Bukan Sekadar Perjalanan,
+                    <h1 class="text-3xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight leading-[1.15]">
+                        Kemanapun Tujuannya,
                         <span class="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 font-normal my-1">
-                            Cerita & Kenangan
+                            Kenyamanan Rombongan
                         </span>
-                        Yang Anda Bawa Pulang.
+                        Adalah Cerita Terbaik Kami.
                     </h1>
 
                     <!-- Authentic Storytelling Paragraph -->
-                    <p class="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed mx-auto lg:mx-0">
-                        Dari jernihnya surga bawah laut Pulau Pahawang & atraksi lumba-lumba Teluk Kiluan, hingga syahdunya golden sunrise Gunung Bromo. Kami merancang perjalanan liburan keluarga, study tour sekolah, dan kunjungan dinas BUMN dengan standar armada bus pariwisata eksekutif prima.
+                    <p class="text-sm sm:text-base text-slate-300 max-w-xl leading-relaxed mx-auto lg:mx-0">
+                        Bersama armada bus pariwisata Nirwana Tour yang terawat, dingin, dan dikemudikan driver profesional berpengalaman. Menemani karya wisata sekolah, study tour kampus, kunjungan dinas BUMN, serta liburan keluarga ke seluruh destinasi Lampung dan Nusantara.
                     </p>
 
-                    <!-- Interactive Quick Destination Search Bar -->
+                    <!-- 4 Fitur Armada Bus Eksekutif -->
+                    <div class="grid grid-cols-2 gap-2.5 max-w-lg mx-auto lg:mx-0 text-left pt-1">
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
+                            <span class="text-amber-400 text-sm">🛡️</span>
+                            <span class="font-semibold truncate">Lolos Uji KIR & Resmi</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
+                            <span class="text-sky-400 text-sm">❄️</span>
+                            <span class="font-semibold truncate">Full AC & Reclining Seat</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
+                            <span class="text-emerald-400 text-sm">🎤</span>
+                            <span class="font-semibold truncate">Smart TV & Karaoke</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
+                            <span class="text-amber-400 text-sm">⚡</span>
+                            <span class="font-semibold truncate">USB Charger Tiap Kursi</span>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Quick Search / Filter Bar -->
                     <div class="pt-2 max-w-xl mx-auto lg:mx-0">
                         <form action="{{ route('packages.index') }}" method="GET" class="bg-white/10 backdrop-blur-xl p-2 rounded-2xl border border-white/15 shadow-2xl flex flex-col sm:flex-row gap-2">
                             <div class="flex-grow flex items-center px-3 py-2 bg-white/5 rounded-xl border border-white/5">
                                 <svg class="w-4 h-4 text-amber-400 shrink-0 mr-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 <select name="category" class="bg-transparent text-white text-xs font-semibold focus:outline-none w-full cursor-pointer [&>option]:text-slate-800">
-                                    <option value="">Semua Kategori & Destinasi</option>
-                                    <option value="lampung">Wisata Lampung (Pahawang, Kiluan, Krui)</option>
-                                    <option value="nusantara">Wisata Nusantara (Jogja, Bromo, Bajo)</option>
+                                    <option value="">Semua Destinasi & Sewa Armada</option>
+                                    <option value="armada">Sewa Big Bus SHD 50 Seat / HiAce</option>
+                                    <option value="lampung">Wisata Bahari Lampung (Pahawang, Kiluan)</option>
                                     <option value="edukasi">Study Tour & Kunjungan Industri</option>
-                                    <option value="armada">Sewa Armada Bus Pariwisata</option>
+                                    <option value="nusantara">Wisata Nusantara (Jogja, Bromo, Bajo)</option>
                                 </select>
                             </div>
                             <button type="submit" class="px-6 py-3 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-bold text-xs shadow-md transition flex items-center justify-center space-x-2 shrink-0">
@@ -79,59 +99,56 @@
                         </form>
                     </div>
 
-                    <!-- Destination Quick Pills -->
-                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 text-xs">
-                        <span class="text-slate-400 text-[11px] font-medium mr-1">Populer:</span>
-                        <a href="{{ route('packages.index', ['category' => 'lampung']) }}" class="px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition">🏝️ Snorkeling Pahawang</a>
-                        <a href="{{ route('packages.index', ['category' => 'lampung']) }}" class="px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition">🐬 Lumba-lumba Kiluan</a>
-                        <a href="{{ route('packages.index', ['category' => 'nusantara']) }}" class="px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition">🌋 Sunrise Bromo</a>
-                        <a href="{{ route('packages.index', ['category' => 'armada']) }}" class="px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition">🚌 Big Bus SHD</a>
-                    </div>
-
-                    <!-- Main CTAs -->
-                    <div class="pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
-                        <a href="https://wa.me/{{ $waNumber }}?text=Halo%20Admin%20Nirwana%20Tour,%20saya%20tertarik%20konsultasi%20mengenai%20paket%20wisata."
+                    <!-- Main Action CTAs -->
+                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+                        <a href="https://wa.me/{{ $waNumber }}?text=Halo%20Admin%20Nirwana%20Tour,%20saya%20tertarik%20konsultasi%20sewa%20bus%20dan%20paket%20wisata."
                            target="_blank"
                            class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2.5 transition transform hover:-translate-y-0.5">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                            <span>Konsultasi via WhatsApp</span>
+                            <span>Pesan Sewa Bus via WhatsApp</span>
                         </a>
-                        <a href="{{ route('packages.index') }}"
+                        <a href="{{ route('services') }}"
                            class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm backdrop-blur-md flex items-center justify-center space-x-2 transition">
-                            <span>Jelajahi Semua Destinasi</span>
+                            <span>Spesifikasi Armada Bus</span>
                             <span>→</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Right Column: Interactive 3D Three.js Travel Globe & Live Trip Badges -->
-                <div class="lg:col-span-5 relative">
-                    <div class="relative w-full h-[420px] sm:h-[480px] lg:h-[520px] flex items-center justify-center">
+                <!-- Right Column: Interactive 3D Three.js Bus Driving Scene -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative w-full h-[450px] sm:h-[500px] lg:h-[560px] flex items-center justify-center">
                         
-                        <!-- 3D Three.js Globe Canvas Container -->
-                        <div id="travel-globe-canvas" class="w-full h-full cursor-grab active:cursor-grabbing select-none"></div>
+                        <!-- 3D Three.js Bus Canvas Container -->
+                        <div id="travel-bus-canvas" class="w-full h-full cursor-pointer select-none"></div>
 
-                        <!-- Top Floating Glass Badge: Bandar Lampung Hub -->
-                        <div class="absolute top-2 left-2 sm:left-4 bg-[#0F2C59]/80 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 shadow-xl text-left pointer-events-none space-y-1">
+                        <!-- Top Floating Glass Badge: Bus Status -->
+                        <div class="absolute top-2 left-2 sm:left-4 bg-[#0F2C59]/85 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 shadow-xl text-left pointer-events-none space-y-1">
                             <div class="flex items-center space-x-2">
-                                <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping"></span>
-                                <span class="text-[10px] font-bold text-amber-300 uppercase tracking-wider">Hub Keberangkatan</span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span class="text-[10px] font-bold text-emerald-300 uppercase tracking-wider">Armada Beroperasi</span>
                             </div>
-                            <div class="text-xs font-extrabold text-white">Bandar Lampung, Indonesia</div>
-                            <div class="text-[10px] text-slate-300">Pusat Armada Bus & Perjalanan Dinas</div>
+                            <div class="text-xs font-extrabold text-white">Big Bus SHD & HiAce Premio</div>
+                            <div class="text-[10px] text-slate-300">Siap Jalan Rute Sumatera & Trans Jawa</div>
                         </div>
 
-                        <!-- Bottom Floating Glass Badge: Routes Connected -->
-                        <div class="absolute bottom-4 right-2 sm:right-4 bg-[#0F2C59]/80 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none space-y-1">
-                            <div class="text-[10px] font-bold text-sky-300 uppercase tracking-wider">Rute Terhubung 3D</div>
-                            <div class="text-xs font-extrabold text-white">Pahawang • Kiluan • Jogja • Bromo • Bajo</div>
-                            <div class="text-[10px] text-emerald-400 font-semibold">✓ 1.500+ Trip Sukses Terlaksana</div>
+                        <!-- Top Right Badge: Destinasi Ikonik -->
+                        <div class="absolute top-2 right-2 sm:right-4 bg-[#0F2C59]/85 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none hidden sm:block">
+                            <span class="text-[10px] font-bold text-amber-300 uppercase tracking-wider block">Destinasi Favorit</span>
+                            <span class="text-xs font-extrabold text-white">Monas • Borobudur • Pahawang</span>
+                        </div>
+
+                        <!-- Bottom Floating Glass Badge: Trip Stat -->
+                        <div class="absolute bottom-4 right-2 sm:right-4 bg-[#0F2C59]/85 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none space-y-0.5">
+                            <div class="text-[10px] font-bold text-sky-300 uppercase tracking-wider">Keamanan & Kenyamanan</div>
+                            <div class="text-xs font-extrabold text-white">1.500+ Trip Rombongan Sukses</div>
+                            <div class="text-[10px] text-amber-400 font-semibold">★ 99% Tingkat Kepuasan Pelanggan</div>
                         </div>
 
                         <!-- Interactive User Hint Pill -->
-                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15 text-[10px] font-medium text-slate-300 pointer-events-none flex items-center space-x-1.5">
-                            <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
-                            <span>Geser & Putar Bola Dunia 360°</span>
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15 text-[10px] font-medium text-slate-300 pointer-events-none flex items-center space-x-1.5 whitespace-nowrap">
+                            <svg class="w-3.5 h-3.5 text-amber-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+                            <span>Gerakkan mouse untuk efek 3D • Klik bus untuk klakson!</span>
                         </div>
 
                     </div>

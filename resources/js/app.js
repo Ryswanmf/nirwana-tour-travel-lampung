@@ -1,13 +1,13 @@
 import Alpine from 'alpinejs';
-import { initTravelGlobe } from './travel-globe';
+import { initTravelBusScene } from './travel-bus-scene';
 
 window.Alpine = Alpine;
-window.initTravelGlobe = initTravelGlobe;
+window.initTravelBusScene = initTravelBusScene;
 
 Alpine.start();
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('travel-globe-canvas')) {
-        initTravelGlobe('travel-globe-canvas');
+    if (document.getElementById('travel-bus-canvas')) {
+        initTravelBusScene('travel-bus-canvas');
     }
 });
