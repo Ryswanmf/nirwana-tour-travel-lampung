@@ -26,40 +26,357 @@
     }
 }">
 
-    <!-- HERO SECTION: INTERACTIVE FLEET & DESTINATION BOOKING BAR (TRAVELOKA STYLE) -->
-    <section class="relative bg-[#061224] text-white overflow-hidden py-14 sm:py-20 lg:py-24 border-b border-white/10">
-        <!-- Background Cinematic Photographic Overlay with Ambient Glows -->
-        <div class="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity scale-105 pointer-events-none"
-             style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=2000&q=80');"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-[#061224]/90 via-[#0A1B36]/85 to-[#061224] pointer-events-none"></div>
+    <!-- HERO SECTION: REAL BUS DRIVING CONTINUOUSLY ON ASPHALT HIGHWAY -->
+    <section class="relative bg-[#050D1A] text-white overflow-hidden py-10 sm:py-16 lg:py-20 border-b border-white/10"
+             x-data="{
+                 speed: 'normal',
+                 speedKmh: 88,
+                 teloletActive: false,
+                 headlightHigh: true,
+                 honkCount: 0,
+                 setSpeed(mode) {
+                     this.speed = mode;
+                     if (mode === 'slow') this.speedKmh = 60;
+                     else if (mode === 'normal') this.speedKmh = 88;
+                     else if (mode === 'fast') this.speedKmh = 110;
+                 },
+                 playTelolet() {
+                     this.honkCount++;
+                     this.teloletActive = true;
+                     setTimeout(() => { this.teloletActive = false; }, 2200);
 
-        <!-- Ambient Luxury Radial Glows -->
-        <div class="absolute -top-32 left-1/4 w-[500px] h-[500px] bg-[#0284C7]/20 rounded-full blur-[140px] pointer-events-none"></div>
-        <div class="absolute top-1/2 -right-20 w-[450px] h-[450px] bg-amber-500/15 rounded-full blur-[130px] pointer-events-none"></div>
+                     try {
+                         const AudioContext = window.AudioContext || window.webkitAudioContext;
+                         if (!AudioContext) return;
+                         const ctx = new AudioContext();
+                         // Cheerful brass melody (E4, G4, A4, B4, D5, E5...)
+                         const notes = [329.63, 392.00, 440.00, 493.88, 587.33, 659.25, 493.88, 440.00, 392.00, 329.63, 392.00, 493.88];
+                         const durations = [0.14, 0.14, 0.14, 0.18, 0.18, 0.28, 0.14, 0.14, 0.14, 0.14, 0.16, 0.35];
+                         let t = ctx.currentTime;
+
+                         notes.forEach((freq, i) => {
+                             const osc = ctx.createOscillator();
+                             const gain = ctx.createGain();
+                             const filter = ctx.createBiquadFilter();
+
+                             osc.type = 'sawtooth';
+                             osc.frequency.setValueAtTime(freq, t);
+
+                             filter.type = 'lowpass';
+                             filter.frequency.setValueAtTime(1400, t);
+
+                             gain.gain.setValueAtTime(0, t);
+                             gain.gain.linearRampToValueAtTime(0.2, t + 0.02);
+                             gain.gain.exponentialRampToValueAtTime(0.001, t + durations[i]);
+
+                             osc.connect(filter);
+                             filter.connect(gain);
+                             gain.connect(ctx.destination);
+
+                             osc.start(t);
+                             osc.stop(t + durations[i] + 0.02);
+                             t += durations[i] * 0.95;
+                         });
+                     } catch(e) {}
+                 }
+             }">
+
+        <!-- Custom CSS for 60FPS Hardware-Accelerated Road & Bus Dynamics -->
+        <style>
+            @keyframes roadScrollNormal {
+                0% { background-position-x: 0px; }
+                100% { background-position-x: 140px; }
+            }
+            @keyframes roadScrollSlow {
+                0% { background-position-x: 0px; }
+                100% { background-position-x: 140px; }
+            }
+            @keyframes roadScrollFast {
+                0% { background-position-x: 0px; }
+                100% { background-position-x: 140px; }
+            }
+            .road-anim-normal {
+                animation: roadScrollNormal 0.42s linear infinite;
+            }
+            .road-anim-slow {
+                animation: roadScrollSlow 0.65s linear infinite;
+            }
+            .road-anim-fast {
+                animation: roadScrollFast 0.28s linear infinite;
+            }
+
+            @keyframes busSuspensionLive {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                20% { transform: translateY(-3px) rotate(-0.25deg); }
+                45% { transform: translateY(-0.8px) rotate(0.1deg); }
+                70% { transform: translateY(-3.8px) rotate(0.2deg); }
+                88% { transform: translateY(-1.2px) rotate(-0.1deg); }
+            }
+            .bus-cruising {
+                animation: busSuspensionLive 1.15s ease-in-out infinite;
+            }
+
+            @keyframes teloletJumpLive {
+                0% { transform: translateY(0) scale(1); }
+                20% { transform: translateY(-18px) scale(1.025) rotate(-1.2deg); }
+                45% { transform: translateY(-5px) scale(0.99); }
+                70% { transform: translateY(-14px) scale(1.015) rotate(0.8deg); }
+                100% { transform: translateY(0) scale(1); }
+            }
+            .bus-telolet-jump {
+                animation: teloletJumpLive 1.1s ease-out;
+            }
+
+            @keyframes wheelSpinCCW {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(-360deg); }
+            }
+            .wheel-spin-normal {
+                animation: wheelSpinCCW 0.28s linear infinite;
+            }
+            .wheel-spin-slow {
+                animation: wheelSpinCCW 0.45s linear infinite;
+            }
+            .wheel-spin-fast {
+                animation: wheelSpinCCW 0.18s linear infinite;
+            }
+
+            @keyframes mountainDrift {
+                0% { background-position-x: 0px; }
+                100% { background-position-x: 800px; }
+            }
+            .mountain-parallax {
+                animation: mountainDrift 35s linear infinite;
+            }
+        </style>
+
+        <!-- Ambient Atmospheric Lighting Glows -->
+        <div class="absolute -top-32 left-1/3 w-[600px] h-[600px] bg-[#0284C7]/15 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="absolute top-1/2 -right-20 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
-            <!-- Hero Header: Typography & Trust Signals -->
-            <div class="max-w-3xl mx-auto text-center space-y-4 mb-8 sm:mb-12">
-                <!-- Verified Official Bureau Badge -->
+            <!-- Hero Header: Headline & Trust Badge -->
+            <div class="max-w-3xl mx-auto text-center space-y-3 mb-6 sm:mb-8">
                 <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-amber-300 shadow-md">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>Biro Perjalanan Wisata Resmi & Penyedia Armada Bus Eksekutif Lampung</span>
+                    <span>Biro Wisata Resmi & Sewa Bus Pariwisata Eksekutif Lampung</span>
                 </div>
 
-                <!-- Grand Title -->
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
-                    Jelajahi Dunia,
+                <h1 class="text-3xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight leading-[1.15]">
+                    Kemanapun Tujuannya,
                     <span class="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 font-normal my-1">
-                        Ciptakan Cerita Tak Terlupakan
+                        Armada Eksekutif Siap Meluncur
                     </span>
-                    Bersama Nirwana Tour
+                    Tanpa Henti Menemani Anda.
                 </h1>
 
-                <!-- Subtitle -->
-                <p class="text-sm sm:text-base lg:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                    Spesialis sewa armada bus pariwisata (Big Bus SHD 50 Seat, HiAce Premio), paket liburan bahari Pahawang-Kiluan, study tour edukatif, hingga kunjungan kerja dinas dan BUMN.
+                <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                    Armada Big Bus Jetbus 5 SHD, Medium Bus, dan HiAce Premio berfasilitas mewah, dingin, dan dikemudikan driver profesional berpengalaman lintas Tol Trans Sumatera & Trans Jawa.
                 </p>
+            </div>
+
+            <!-- THE CINEMATIC ENDLESS HIGHWAY DRIVING THEATRE -->
+            <div class="relative max-w-5xl mx-auto rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-gradient-to-b from-[#061224] to-[#0A1B36] mb-8 select-none">
+                
+                <!-- Sky & Distant Mountain Horizon (Parallax Layer) -->
+                <div class="relative w-full h-36 sm:h-44 overflow-hidden bg-gradient-to-b from-[#020712] via-[#08152B] to-[#0D2244]">
+                    <!-- Starry Night Particles -->
+                    <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+                    
+                    <!-- Crescent Moon & Twilight Glow -->
+                    <div class="absolute top-4 right-10 sm:right-16 flex items-center space-x-2 opacity-85">
+                        <span class="text-2xl sm:text-3xl filter drop-shadow-[0_0_12px_rgba(254,240,138,0.6)]">🌙</span>
+                        <div class="hidden sm:block text-left">
+                            <span class="text-[10px] font-bold text-amber-300 uppercase tracking-widest block">Rute Trans Sumatera</span>
+                            <span class="text-[11px] text-slate-300">Tol Bakauheni — Terbanggi Besar</span>
+                        </div>
+                    </div>
+
+                    <!-- Distant Mountain Silhouettes (Gunung Pesawaran & Rajabasa Lampung) -->
+                    <div class="absolute bottom-0 inset-x-0 h-24 opacity-35 mountain-parallax pointer-events-none"
+                         style="background-image: radial-gradient(ellipse at bottom, #0284c7 0%, transparent 70%);">
+                        <svg class="w-full h-full text-[#030d1e] fill-current" preserveAspectRatio="none" viewBox="0 0 1200 120">
+                            <path d="M0,120 L0,80 Q150,20 300,70 T600,40 T900,65 T1200,50 L1200,120 Z"></path>
+                        </svg>
+                    </div>
+
+                    <!-- Highway Billboard: Nirwana Tour & Travel Lampung -->
+                    <div class="absolute top-4 left-6 sm:left-10 bg-slate-900/80 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/15 shadow-lg flex items-center space-x-2.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span class="text-xs font-bold text-white tracking-wide">Nirwana Tour Trans Jawa-Sumatera</span>
+                    </div>
+
+                    <!-- Live Cockpit HUD Telemetry Overlay -->
+                    <div class="absolute bottom-3 left-4 sm:left-8 flex flex-wrap items-center gap-2 text-xs">
+                        <div class="bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-emerald-300 font-mono font-bold flex items-center space-x-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span x-text="speedKmh + ' KM/JAM'">88 KM/JAM</span>
+                        </div>
+                        <div class="bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-sky-200 text-[11px] font-semibold hidden sm:flex items-center space-x-1">
+                            <span>❄️ AC 18°C</span>
+                            <span>•</span>
+                            <span>🎤 Karaoke On</span>
+                            <span>•</span>
+                            <span>🛡️ Unit KIR Aktif</span>
+                        </div>
+                    </div>
+
+                    <!-- Soundwave Balloon (Appears when Telolet is Honked) -->
+                    <div x-show="teloletActive"
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 -translate-y-4 scale-75"
+                         x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                         x-transition:leave="transition ease-in duration-300"
+                         x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                         x-transition:leave-end="opacity-0 -translate-y-4 scale-75"
+                         x-cloak
+                         class="absolute top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-900 font-extrabold text-xs sm:text-sm px-4 py-2 rounded-2xl shadow-2xl flex items-center space-x-2 border-2 border-white animate-bounce z-40">
+                        <span class="text-lg">🎺</span>
+                        <span>TELOLET TELOLET BASURI NIRWANA! 🎶</span>
+                    </div>
+                </div>
+
+                <!-- THE CONTINUOUS HIGHWAY ASPHALT & BUS RUNNING STAGE -->
+                <div class="relative w-full h-[220px] sm:h-[280px] lg:h-[320px] overflow-hidden bg-[#101724]">
+                    
+                    <!-- Upper Concrete Road Divider / Guardrail -->
+                    <div class="absolute top-0 inset-x-0 h-4 bg-gradient-to-b from-[#1e293b] to-[#0f172a] border-b border-slate-700/60 flex items-center justify-around overflow-hidden">
+                        <template x-for="i in 12" :key="i">
+                            <div class="w-8 h-1.5 bg-amber-400/70 rounded-full"></div>
+                        </template>
+                    </div>
+
+                    <!-- Dark Asphalt Surface with High-Speed Continuous Moving White/Yellow Stripes -->
+                    <div class="absolute inset-0 top-4 bottom-7 bg-[#141b27]"
+                         :class="speed === 'fast' ? 'road-anim-fast' : (speed === 'slow' ? 'road-anim-slow' : 'road-anim-normal')"
+                         style="background-image: 
+                            linear-gradient(to right, rgba(254, 240, 138, 0.9) 0px, rgba(254, 240, 138, 0.9) 65px, transparent 65px, transparent 130px),
+                            linear-gradient(to right, rgba(255, 255, 255, 0.7) 0px, rgba(255, 255, 255, 0.7) 65px, transparent 65px, transparent 130px);
+                            background-size: 130px 4px, 130px 4px;
+                            background-position: 0 45%, 0 78%;
+                            background-repeat: repeat-x, repeat-x;">
+                        
+                        <!-- Asphalt Grain & Road Surface Texture -->
+                        <div class="absolute inset-0 opacity-15 mix-blend-overlay bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:8px_8px]"></div>
+
+                        <!-- Continuous Speed Lines on Road Surface -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent pointer-events-none"></div>
+                    </div>
+
+                    <!-- Lower Road Curb & Reflective Cat's Eyes (Mata Kucing) -->
+                    <div class="absolute bottom-0 inset-x-0 h-7 bg-gradient-to-t from-slate-900 to-[#1e293b] border-t border-slate-700/80 flex items-center justify-around overflow-hidden">
+                        <template x-for="i in 16" :key="i">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/80 shadow-[0_0_8px_#ef4444]"></div>
+                        </template>
+                    </div>
+
+                    <!-- THE REAL JETBUS 5 SHD EXECUTIVE TOUR BUS (CRUISING ON THE ASPHALT) -->
+                    <div class="absolute left-1/2 -translate-x-[48%] top-1/2 -translate-y-[45%] w-[330px] sm:w-[460px] lg:w-[580px] pointer-events-none select-none z-20"
+                         :class="teloletActive ? 'bus-telolet-jump' : 'bus-cruising'">
+                        
+                        <!-- Realistic Tire Road Contact Shadow -->
+                        <div class="absolute -bottom-2 sm:-bottom-3 left-10 right-8 h-6 sm:h-8 bg-black/80 rounded-full blur-md"></div>
+
+                        <!-- VOLUMETRIC HEADLIGHT BEAM (LIGHTING UP THE ASPHALT FORWARD) -->
+                        <div x-show="headlightHigh"
+                             class="absolute -left-48 sm:-left-64 lg:-left-80 top-[42%] w-52 sm:w-72 lg:w-96 h-24 sm:h-32 pointer-events-none z-10 transition-opacity duration-300"
+                             :class="teloletActive ? 'opacity-100 scale-105' : 'opacity-85'"
+                             style="background: linear-gradient(to left, rgba(254, 240, 138, 0.75) 0%, rgba(254, 240, 138, 0.35) 45%, rgba(254, 240, 138, 0.08) 75%, transparent 100%);
+                                    clip-path: polygon(100% 42%, 100% 58%, 0% 100%, 0% 0%);
+                                    filter: blur(4px);">
+                        </div>
+
+                        <!-- Taillight Red Flare (Glowing Behind the Bus) -->
+                        <div class="absolute -right-4 top-[56%] w-12 h-12 bg-rose-500/60 rounded-full blur-lg pointer-events-none"></div>
+
+                        <!-- Real Cutout Bus Image -->
+                        <div class="relative w-full">
+                            <img src="{{ asset('images/bus-real.png') }}" 
+                                 alt="Armada Bus Pariwisata Jetbus 5 Nirwana Tour Lampung" 
+                                 class="w-full h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)]"
+                                 loading="eager">
+
+                            <!-- ACTIVE ROTATING FRONT WHEEL (ALLOY RIM SPINNER) -->
+                            <div class="absolute left-[49.2%] top-[77.8%] -translate-x-1/2 -translate-y-1/2 w-[10.4%] aspect-square rounded-full overflow-hidden pointer-events-none"
+                                 :class="speed === 'fast' ? 'wheel-spin-fast' : (speed === 'slow' ? 'wheel-spin-slow' : 'wheel-spin-normal')"
+                                 style="background: radial-gradient(circle, rgba(226, 232, 240, 0.6) 0%, rgba(148, 163, 184, 0.4) 40%, rgba(30, 41, 59, 0.8) 70%, transparent 100%);
+                                        box-shadow: inset 0 0 4px rgba(0,0,0,0.8);">
+                                <!-- Blurred Spinning Spokes Pattern -->
+                                <div class="w-full h-full opacity-60"
+                                     style="background: conic-gradient(from 0deg, rgba(255,255,255,0.7) 0deg, transparent 30deg, rgba(255,255,255,0.7) 60deg, transparent 90deg, rgba(255,255,255,0.7) 120deg, transparent 150deg, rgba(255,255,255,0.7) 180deg, transparent 210deg, rgba(255,255,255,0.7) 240deg, transparent 270deg, rgba(255,255,255,0.7) 300deg, transparent 330deg, rgba(255,255,255,0.7) 360deg);">
+                                </div>
+                            </div>
+
+                            <!-- ACTIVE ROTATING REAR WHEEL (ALLOY RIM SPINNER) -->
+                            <div class="absolute left-[82.2%] top-[75.6%] -translate-x-1/2 -translate-y-1/2 w-[9.8%] aspect-square rounded-full overflow-hidden pointer-events-none"
+                                 :class="speed === 'fast' ? 'wheel-spin-fast' : (speed === 'slow' ? 'wheel-spin-slow' : 'wheel-spin-normal')"
+                                 style="background: radial-gradient(circle, rgba(226, 232, 240, 0.6) 0%, rgba(148, 163, 184, 0.4) 40%, rgba(30, 41, 59, 0.8) 70%, transparent 100%);
+                                        box-shadow: inset 0 0 4px rgba(0,0,0,0.8);">
+                                <!-- Blurred Spinning Spokes Pattern -->
+                                <div class="w-full h-full opacity-60"
+                                     style="background: conic-gradient(from 0deg, rgba(255,255,255,0.7) 0deg, transparent 30deg, rgba(255,255,255,0.7) 60deg, transparent 90deg, rgba(255,255,255,0.7) 120deg, transparent 150deg, rgba(255,255,255,0.7) 180deg, transparent 210deg, rgba(255,255,255,0.7) 240deg, transparent 270deg, rgba(255,255,255,0.7) 300deg, transparent 330deg, rgba(255,255,255,0.7) 360deg);">
+                                </div>
+                            </div>
+
+                            <!-- Subtle Road Dust Particle Trails Behind Rear Wheels -->
+                            <div class="absolute -right-8 bottom-3 w-16 h-8 bg-gradient-to-r from-white/10 to-transparent blur-md rounded-full pointer-events-none"></div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- DRIVER COCKPIT & INTERACTIVE ACTION CONTROLS (BOTTOM BAR) -->
+                <div class="bg-slate-900/95 backdrop-blur-xl px-4 sm:px-6 py-3.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+                    
+                    <!-- Left: Interactive Controls (Telolet & Speed) -->
+                    <div class="flex items-center space-x-2">
+                        <!-- Telolet Horn Button -->
+                        <button @click="playTelolet()"
+                                type="button"
+                                class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold flex items-center space-x-1.5 shadow-md shadow-amber-500/30 transition transform active:scale-95 cursor-pointer">
+                            <span class="text-base">🔊</span>
+                            <span>Klakson Telolet</span>
+                        </button>
+
+                        <!-- Speed Mode Selector -->
+                        <div class="hidden sm:flex items-center space-x-1 bg-white/5 p-1 rounded-xl border border-white/10">
+                            <button @click="setSpeed('slow')"
+                                    type="button"
+                                    :class="speed === 'slow' ? 'bg-[#0284C7] text-white' : 'text-slate-400 hover:text-white'"
+                                    class="px-2.5 py-1 rounded-lg font-semibold text-[11px] transition">
+                                60 km/h
+                            </button>
+                            <button @click="setSpeed('normal')"
+                                    type="button"
+                                    :class="speed === 'normal' ? 'bg-[#0284C7] text-white' : 'text-slate-400 hover:text-white'"
+                                    class="px-2.5 py-1 rounded-lg font-semibold text-[11px] transition">
+                                88 km/h
+                            </button>
+                            <button @click="setSpeed('fast')"
+                                    type="button"
+                                    :class="speed === 'fast' ? 'bg-[#0284C7] text-white' : 'text-slate-400 hover:text-white'"
+                                    class="px-2.5 py-1 rounded-lg font-semibold text-[11px] transition">
+                                110 km/h
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Direct WhatsApp Booking CTA for this Bus -->
+                    <div class="flex items-center space-x-2.5">
+                        <span class="text-[11px] text-slate-300 hidden md:inline">Suka dengan armada ini?</span>
+                        <a href="https://wa.me/{{ $waNumber }}?text=Halo%20Admin%20Nirwana%20Tour,%20saya%20tertarik%20sewa%20armada%20Big%20Bus%20Jetbus%205%20SHD%20untuk%20rombongan%20kami."
+                           target="_blank"
+                           class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold flex items-center space-x-2 shadow-lg shadow-emerald-500/25 transition transform hover:-translate-y-0.5">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                            <span>Pesan Bus Ini via WhatsApp</span>
+                            <span>→</span>
+                        </a>
+                    </div>
+
+                </div>
+
             </div>
 
             <!-- INTERACTIVE BOOKING BAR COMPONENT (TRAVELOKA / TIKET STYLE) -->
@@ -108,6 +425,18 @@
                     <button @click="activeTab = 'bus'"
                             type="button"
                             :class="activeTab === 'bus' ? 'bg-[#0284C7] text-white shadow-lg shadow-sky-500/30' : 'text-slate-300 hover:text-white hover:bg-white/5'"
+                            class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition">
+                        <span class="text-base sm:text-lg">🚌</span>
+                        <span>Sewa Bus Pariwisata</span>
+                    </button>
+                    <button @click="activeTab = 'tour'"
+                            type="button"
+                            :class="activeTab === 'tour' ? 'bg-[#0284C7] text-white shadow-lg shadow-sky-500/30' : 'text-slate-300 hover:text-white hover:bg-white/5'"
+                            class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition">
+                        <span class="text-base sm:text-lg">🏝️</span>
+                        <span>Paket Wisata & Study Tour</span>
+                    </button>
+                </div>
                             class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition">
                         <span class="text-base sm:text-lg">🚌</span>
                         <span>Sewa Bus Pariwisata</span>
