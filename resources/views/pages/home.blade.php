@@ -150,27 +150,6 @@
 
                         </div>
 
-                        <!-- Top Floating Glass Badge: Bus Status -->
-                        <div class="absolute -top-3 left-2 sm:left-4 bg-[#0F2C59]/90 backdrop-blur-md px-3.5 py-2.5 rounded-2xl border border-white/15 shadow-xl text-left pointer-events-none space-y-0.5 z-30">
-                            <div class="text-[10px] font-bold text-emerald-300 uppercase tracking-wider">Armada Beroperasi</div>
-                            <div class="text-xs font-extrabold text-white">Big Bus SHD & HiAce Premio</div>
-                            <div class="text-[10px] text-slate-300">Siap Rute Trans Sumatera & Trans Jawa</div>
-                        </div>
-
-                        <!-- Top Right Floating Badge: Legalitas -->
-                        <div class="absolute -top-3 right-2 sm:right-4 bg-[#0F2C59]/90 backdrop-blur-md px-3.5 py-2.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none hidden sm:block space-y-0.5 z-30">
-                            <div class="text-[10px] font-bold text-amber-300 uppercase tracking-wider">Legalitas Terjamin</div>
-                            <div class="text-xs font-extrabold text-white">Berizin Kemenhub & Kemenparekraf</div>
-                            <div class="text-[10px] text-slate-300">Unit Rutin Uji Kelayakan</div>
-                        </div>
-
-                        <!-- Bottom Floating Glass Badge: Trip Stat -->
-                        <div class="absolute -bottom-3 right-2 sm:right-4 bg-[#0F2C59]/90 backdrop-blur-md px-3.5 py-2.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none space-y-0.5 z-30">
-                            <div class="text-[10px] font-bold text-sky-300 uppercase tracking-wider">Keamanan & Kenyamanan</div>
-                            <div class="text-xs font-extrabold text-white">1.500+ Trip Rombongan Sukses</div>
-                            <div class="text-[10px] text-amber-400 font-semibold">99% Tingkat Kepuasan Pelanggan</div>
-                        </div>
-
                     </div>
                 </div>
 
