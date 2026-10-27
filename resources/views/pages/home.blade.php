@@ -79,23 +79,19 @@
                         Spesialis sewa armada bus pariwisata (Big Bus SHD 50 Seat, HiAce Premio), paket liburan bahari Pahawang-Kiluan, study tour edukatif sekolah & kampus, serta kunjungan kerja dinas dan BUMN dengan standar kenyamanan eksekutif terpercaya.
                     </p>
 
-                    <!-- 4 Fitur Armada & Layanan Unggulan (Menggunakan SVG Icons Bersih, Tanpa Emoji) -->
+                    <!-- 4 Fitur Armada & Layanan Unggulan (Teks Bersih Minimalis, Tanpa Icon / Emote) -->
                     <div class="grid grid-cols-2 gap-2.5 max-w-lg mx-auto lg:mx-0 text-left pt-1">
-                        <div class="flex items-center space-x-2.5 bg-white/5 border border-white/10 px-3 py-2.5 rounded-xl text-xs text-slate-200">
-                            <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                            <span class="font-semibold truncate">Lolos Uji KIR & Resmi</span>
+                        <div class="bg-white/5 border border-white/10 px-3.5 py-2.5 rounded-xl text-xs text-slate-200 font-medium tracking-wide">
+                            Lolos Uji KIR & Resmi
                         </div>
-                        <div class="flex items-center space-x-2.5 bg-white/5 border border-white/10 px-3 py-2.5 rounded-xl text-xs text-slate-200">
-                            <svg class="w-4 h-4 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m9-9H3m15.364-6.364l-12.728 12.728m12.728 0L5.636 5.636"/></svg>
-                            <span class="font-semibold truncate">Full AC & Reclining Seat</span>
+                        <div class="bg-white/5 border border-white/10 px-3.5 py-2.5 rounded-xl text-xs text-slate-200 font-medium tracking-wide">
+                            Full AC & Reclining Seat
                         </div>
-                        <div class="flex items-center space-x-2.5 bg-white/5 border border-white/10 px-3 py-2.5 rounded-xl text-xs text-slate-200">
-                            <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            <span class="font-semibold truncate">Smart TV & Karaoke</span>
+                        <div class="bg-white/5 border border-white/10 px-3.5 py-2.5 rounded-xl text-xs text-slate-200 font-medium tracking-wide">
+                            Smart TV & Karaoke
                         </div>
-                        <div class="flex items-center space-x-2.5 bg-white/5 border border-white/10 px-3 py-2.5 rounded-xl text-xs text-slate-200">
-                            <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                            <span class="font-semibold truncate">USB Charger Tiap Kursi</span>
+                        <div class="bg-white/5 border border-white/10 px-3.5 py-2.5 rounded-xl text-xs text-slate-200 font-medium tracking-wide">
+                            USB Charger Tiap Kursi
                         </div>
                     </div>
 
@@ -154,31 +150,23 @@
 
                         </div>
 
-                        <!-- Top Floating Glass Badge: Bus Status (Clean SVGs, No Emojis) -->
-                        <div class="absolute -top-3 left-2 sm:left-4 bg-[#0F2C59]/90 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl text-left pointer-events-none space-y-1 z-30">
-                            <div class="flex items-center space-x-2">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-                                <span class="text-[10px] font-bold text-emerald-300 uppercase tracking-wider">Armada Beroperasi</span>
-                            </div>
+                        <!-- Top Floating Glass Badge: Bus Status -->
+                        <div class="absolute -top-3 left-2 sm:left-4 bg-[#0F2C59]/90 backdrop-blur-md px-3.5 py-2.5 rounded-2xl border border-white/15 shadow-xl text-left pointer-events-none space-y-0.5 z-30">
+                            <div class="text-[10px] font-bold text-emerald-300 uppercase tracking-wider">Armada Beroperasi</div>
                             <div class="text-xs font-extrabold text-white">Big Bus SHD & HiAce Premio</div>
                             <div class="text-[10px] text-slate-300">Siap Rute Trans Sumatera & Trans Jawa</div>
                         </div>
 
-                        <!-- Top Right Floating Badge: Legalitas (Clean SVGs, No Emojis) -->
-                        <div class="absolute -top-3 right-2 sm:right-4 bg-[#0F2C59]/90 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none hidden sm:block z-30">
-                            <div class="flex items-center justify-end space-x-1.5 mb-0.5">
-                                <svg class="w-3.5 h-3.5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                                <span class="text-[10px] font-bold text-amber-300 uppercase tracking-wider block">Legalitas Terjamin</span>
-                            </div>
-                            <span class="text-xs font-extrabold text-white">Berizin Kemenhub & Kemenparekraf</span>
+                        <!-- Top Right Floating Badge: Legalitas -->
+                        <div class="absolute -top-3 right-2 sm:right-4 bg-[#0F2C59]/90 backdrop-blur-md px-3.5 py-2.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none hidden sm:block space-y-0.5 z-30">
+                            <div class="text-[10px] font-bold text-amber-300 uppercase tracking-wider">Legalitas Terjamin</div>
+                            <div class="text-xs font-extrabold text-white">Berizin Kemenhub & Kemenparekraf</div>
+                            <div class="text-[10px] text-slate-300">Unit Rutin Uji Kelayakan</div>
                         </div>
 
-                        <!-- Bottom Floating Glass Badge: Trip Stat (Clean SVGs, No Emojis) -->
-                        <div class="absolute -bottom-3 right-2 sm:right-4 bg-[#0F2C59]/90 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none space-y-0.5 z-30">
-                            <div class="flex items-center justify-end space-x-1 mb-0.5">
-                                <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                                <span class="text-[10px] font-bold text-sky-300 uppercase tracking-wider">Keamanan & Kenyamanan</span>
-                            </div>
+                        <!-- Bottom Floating Glass Badge: Trip Stat -->
+                        <div class="absolute -bottom-3 right-2 sm:right-4 bg-[#0F2C59]/90 backdrop-blur-md px-3.5 py-2.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none space-y-0.5 z-30">
+                            <div class="text-[10px] font-bold text-sky-300 uppercase tracking-wider">Keamanan & Kenyamanan</div>
                             <div class="text-xs font-extrabold text-white">1.500+ Trip Rombongan Sukses</div>
                             <div class="text-[10px] text-amber-400 font-semibold">99% Tingkat Kepuasan Pelanggan</div>
                         </div>
