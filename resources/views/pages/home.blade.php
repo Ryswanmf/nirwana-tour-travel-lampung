@@ -26,41 +26,30 @@
     }
 }">
 
-    <!-- HERO SECTION: 3D DIORAMA WITH MATCHING 3D BACKGROUND -->
+    <!-- HERO SECTION: CLEAN PHOTOGRAPHIC SHOWCASE (NO 3D CANVAS, NO EMOJIS) -->
     <section class="relative bg-[#061224] text-white overflow-hidden py-14 sm:py-20 lg:py-24 border-b border-white/10">
         
-        <!-- THREE.JS 3D BACKGROUND CANVAS (VOLUMETRIC CLOUDS, SUNLIGHT PARTICLES & COMPASS RINGS) -->
-        <div id="hero-3d-background" class="absolute inset-0 pointer-events-none z-0"></div>
-
-        <!-- Ambient Luxury Radial Glows (Matching bus.png Lighting) -->
+        <!-- Ambient Luxury Radial Lighting -->
         <div class="absolute -top-32 left-1/4 w-[550px] h-[550px] bg-[#0284C7]/20 rounded-full blur-[150px] pointer-events-none"></div>
         <div class="absolute top-1/3 -right-20 w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-[140px] pointer-events-none"></div>
         <div class="absolute -bottom-20 left-1/3 w-96 h-96 bg-sky-500/10 rounded-full blur-[130px] pointer-events-none"></div>
 
-        <!-- Custom CSS for Floating 3D Diorama Island -->
+        <!-- Custom CSS for Gentle Floating Motion -->
         <style>
-            @keyframes floatIsland {
-                0%, 100% { transform: translateY(0px) rotate(0deg); }
-                50% { transform: translateY(-14px) rotate(0.4deg); }
+            @keyframes floatSubtle {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
             }
-            .animate-float-diorama {
-                animation: floatIsland 5s ease-in-out infinite;
-            }
-
-            @keyframes pulseShadow {
-                0%, 100% { transform: scale(1); opacity: 0.7; }
-                50% { transform: scale(0.92); opacity: 0.45; }
-            }
-            .animate-pulse-shadow {
-                animation: pulseShadow 5s ease-in-out infinite;
+            .animate-float-subtle {
+                animation: floatSubtle 4.5s ease-in-out infinite;
             }
 
-            @keyframes beaconGlow {
-                0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-                70% { transform: scale(1.15); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            @keyframes pulseShadowSubtle {
+                0%, 100% { transform: scale(1); opacity: 0.6; }
+                50% { transform: scale(0.94); opacity: 0.4; }
             }
-            .animate-beacon {
-                animation: beaconGlow 2s infinite;
+            .animate-pulse-shadow-subtle {
+                animation: pulseShadowSubtle 4.5s ease-in-out infinite;
             }
         </style>
 
@@ -90,22 +79,22 @@
                         Spesialis sewa armada bus pariwisata (Big Bus SHD 50 Seat, HiAce Premio), paket liburan bahari Pahawang-Kiluan, study tour edukatif sekolah & kampus, serta kunjungan kerja dinas dan BUMN dengan standar kenyamanan eksekutif terpercaya.
                     </p>
 
-                    <!-- 4 Fitur Armada & Layanan Unggulan -->
+                    <!-- 4 Fitur Armada & Layanan Unggulan (Menggunakan SVG Icons Bersih, Tanpa Emoji) -->
                     <div class="grid grid-cols-2 gap-2.5 max-w-lg mx-auto lg:mx-0 text-left pt-1">
-                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
-                            <span class="text-amber-400 text-sm">🛡️</span>
+                        <div class="flex items-center space-x-2.5 bg-white/5 border border-white/10 px-3 py-2.5 rounded-xl text-xs text-slate-200">
+                            <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                             <span class="font-semibold truncate">Lolos Uji KIR & Resmi</span>
                         </div>
-                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
-                            <span class="text-sky-400 text-sm">❄️</span>
+                        <div class="flex items-center space-x-2.5 bg-white/5 border border-white/10 px-3 py-2.5 rounded-xl text-xs text-slate-200">
+                            <svg class="w-4 h-4 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m9-9H3m15.364-6.364l-12.728 12.728m12.728 0L5.636 5.636"/></svg>
                             <span class="font-semibold truncate">Full AC & Reclining Seat</span>
                         </div>
-                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
-                            <span class="text-emerald-400 text-sm">🎤</span>
+                        <div class="flex items-center space-x-2.5 bg-white/5 border border-white/10 px-3 py-2.5 rounded-xl text-xs text-slate-200">
+                            <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             <span class="font-semibold truncate">Smart TV & Karaoke</span>
                         </div>
-                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
-                            <span class="text-amber-400 text-sm">⚡</span>
+                        <div class="flex items-center space-x-2.5 bg-white/5 border border-white/10 px-3 py-2.5 rounded-xl text-xs text-slate-200">
+                            <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                             <span class="font-semibold truncate">USB Charger Tiap Kursi</span>
                         </div>
                     </div>
@@ -146,121 +135,27 @@
                     </div>
                 </div>
 
-                <!-- RIGHT COLUMN: 3D DIORAMA ISLAND SHOWCASE (USING BUS.PNG) -->
-                <div class="lg:col-span-6 relative flex items-center justify-center"
-                     x-data="{
-                         rotateX: 0,
-                         rotateY: 0,
-                         activeSpot: null,
-                         handleMouseMove(e) {
-                             const rect = $el.getBoundingClientRect();
-                             const x = e.clientX - rect.left;
-                             const y = e.clientY - rect.top;
-                             const centerX = rect.width / 2;
-                             const centerY = rect.height / 2;
-                             this.rotateY = ((x - centerX) / centerX) * 10;
-                             this.rotateX = -((y - centerY) / centerY) * 10;
-                         },
-                         handleMouseLeave() {
-                             this.rotateX = 0;
-                             this.rotateY = 0;
-                             this.activeSpot = null;
-                         }
-                     }"
-                     @mousemove="handleMouseMove($event)"
-                     @mouseleave="handleMouseLeave()">
+                <!-- RIGHT COLUMN: CLEAN HERO DIORAMA SHOWCASE (USING BUS.PNG, NO EMOJIS, NO 3D CANVAS) -->
+                <div class="lg:col-span-6 relative flex items-center justify-center">
                     
-                    <div class="relative w-full max-w-[540px] aspect-square flex items-center justify-center select-none"
-                         style="perspective: 1200px;">
+                    <div class="relative w-full max-w-[540px] aspect-square flex items-center justify-center select-none">
                         
-                        <!-- Dynamic Contact Ground Shadow beneath Diorama Island -->
-                        <div class="absolute -bottom-2 sm:-bottom-4 w-[75%] h-14 bg-black/60 rounded-[100%] blur-xl animate-pulse-shadow pointer-events-none"></div>
+                        <!-- Dynamic Contact Ground Shadow beneath the Showcase -->
+                        <div class="absolute -bottom-2 sm:-bottom-4 w-[75%] h-14 bg-black/60 rounded-[100%] blur-xl animate-pulse-shadow-subtle pointer-events-none"></div>
 
-                        <!-- 3D Interactive Floating Diorama Container -->
-                        <div class="relative w-full h-full flex items-center justify-center animate-float-diorama"
-                             :style="'transform: rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg); transition: transform 0.12s ease-out;'">
+                        <!-- Floating Showcase Container -->
+                        <div class="relative w-full h-full flex items-center justify-center animate-float-subtle">
                             
-                            <!-- Master 3D Diorama Image (bus.png) -->
+                            <!-- Master Image: bus.png -->
                             <img src="{{ asset('images/bus.png') }}" 
-                                 alt="Nirwana Tour Travel 3D Bus Diorama" 
-                                 class="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)] cursor-pointer"
+                                 alt="Nirwana Tour Travel Bus Pariwisata Lampung" 
+                                 class="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)]"
                                  loading="eager">
-
-                            <!-- INTERACTIVE 3D BEACON HOTSPOTS ON THE DIORAMA -->
-
-                            <!-- Hotspot 1: Bus Wisata Eksekutif -->
-                            <div class="absolute left-[64%] top-[62%] -translate-x-1/2 -translate-y-1/2 z-30"
-                                 @mouseenter="activeSpot = 'bus'" 
-                                 @mouseleave="activeSpot = null"
-                                 @click="activeSpot = (activeSpot === 'bus' ? null : 'bus')">
-                                <div class="w-7 h-7 rounded-full bg-red-500/90 border-2 border-white flex items-center justify-center text-xs font-bold text-white shadow-lg cursor-pointer animate-beacon hover:scale-110 transition">
-                                    🚌
-                                </div>
-                                <!-- Hotspot Tooltip -->
-                                <div x-show="activeSpot === 'bus'" 
-                                     x-transition 
-                                     x-cloak 
-                                     class="absolute bottom-9 left-1/2 -translate-x-1/2 w-48 bg-[#0F2C59]/95 backdrop-blur-md p-2.5 rounded-xl border border-white/20 shadow-2xl text-left pointer-events-none z-40">
-                                    <div class="text-[11px] font-extrabold text-amber-300">Big Bus SHD 50 Seat</div>
-                                    <div class="text-[10px] text-slate-200">Full AC, Reclining Seat, Smart TV & Karaoke</div>
-                                </div>
-                            </div>
-
-                            <!-- Hotspot 2: Candi Borobudur -->
-                            <div class="absolute left-[54%] top-[26%] -translate-x-1/2 -translate-y-1/2 z-30"
-                                 @mouseenter="activeSpot = 'borobudur'" 
-                                 @mouseleave="activeSpot = null"
-                                 @click="activeSpot = (activeSpot === 'borobudur' ? null : 'borobudur')">
-                                <div class="w-6 h-6 rounded-full bg-amber-500/90 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white shadow-lg cursor-pointer animate-beacon hover:scale-110 transition">
-                                    🏛️
-                                </div>
-                                <div x-show="activeSpot === 'borobudur'" 
-                                     x-transition 
-                                     x-cloak 
-                                     class="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 bg-[#0F2C59]/95 backdrop-blur-md p-2.5 rounded-xl border border-white/20 shadow-2xl text-left pointer-events-none z-40">
-                                    <div class="text-[11px] font-extrabold text-amber-300">Candi Borobudur & Jogja</div>
-                                    <div class="text-[10px] text-slate-200">Paket Wisata Budaya & Study Tour Nusantara</div>
-                                </div>
-                            </div>
-
-                            <!-- Hotspot 3: Monas Jakarta -->
-                            <div class="absolute left-[30%] top-[14%] -translate-x-1/2 -translate-y-1/2 z-30"
-                                 @mouseenter="activeSpot = 'monas'" 
-                                 @mouseleave="activeSpot = null"
-                                 @click="activeSpot = (activeSpot === 'monas' ? null : 'monas')">
-                                <div class="w-6 h-6 rounded-full bg-sky-500/90 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white shadow-lg cursor-pointer animate-beacon hover:scale-110 transition">
-                                    🏙️
-                                </div>
-                                <div x-show="activeSpot === 'monas'" 
-                                     x-transition 
-                                     x-cloak 
-                                     class="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 bg-[#0F2C59]/95 backdrop-blur-md p-2.5 rounded-xl border border-white/20 shadow-2xl text-left pointer-events-none z-40">
-                                    <div class="text-[11px] font-extrabold text-amber-300">Monumen Nasional (Monas)</div>
-                                    <div class="text-[10px] text-slate-200">Kunjungan Kerja BUMN & Study Tour Edukatif</div>
-                                </div>
-                            </div>
-
-                            <!-- Hotspot 4: Plang Kayu Nirwana Tour -->
-                            <div class="absolute left-[20%] top-[68%] -translate-x-1/2 -translate-y-1/2 z-30"
-                                 @mouseenter="activeSpot = 'sign'" 
-                                 @mouseleave="activeSpot = null"
-                                 @click="activeSpot = (activeSpot === 'sign' ? null : 'sign')">
-                                <div class="w-6 h-6 rounded-full bg-emerald-500/90 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white shadow-lg cursor-pointer animate-beacon hover:scale-110 transition">
-                                    🏷️
-                                </div>
-                                <div x-show="activeSpot === 'sign'" 
-                                     x-transition 
-                                     x-cloak 
-                                     class="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 bg-[#0F2C59]/95 backdrop-blur-md p-2.5 rounded-xl border border-white/20 shadow-2xl text-left pointer-events-none z-40">
-                                    <div class="text-[11px] font-extrabold text-amber-300">Nirwana Tour Lampung</div>
-                                    <div class="text-[10px] text-slate-200">Biro Resmi Pimpinan Kiki M Alfin</div>
-                                </div>
-                            </div>
 
                         </div>
 
-                        <!-- Top Floating Glass Badge: Bus Status -->
-                        <div class="absolute -top-3 left-2 sm:left-4 bg-[#0F2C59]/85 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl text-left pointer-events-none space-y-1 z-30">
+                        <!-- Top Floating Glass Badge: Bus Status (Clean SVGs, No Emojis) -->
+                        <div class="absolute -top-3 left-2 sm:left-4 bg-[#0F2C59]/90 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl text-left pointer-events-none space-y-1 z-30">
                             <div class="flex items-center space-x-2">
                                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
                                 <span class="text-[10px] font-bold text-emerald-300 uppercase tracking-wider">Armada Beroperasi</span>
@@ -269,23 +164,23 @@
                             <div class="text-[10px] text-slate-300">Siap Rute Trans Sumatera & Trans Jawa</div>
                         </div>
 
-                        <!-- Top Right Floating Badge: Legalitas -->
-                        <div class="absolute -top-3 right-2 sm:right-4 bg-[#0F2C59]/85 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none hidden sm:block z-30">
-                            <span class="text-[10px] font-bold text-amber-300 uppercase tracking-wider block">Legalitas Terjamin</span>
+                        <!-- Top Right Floating Badge: Legalitas (Clean SVGs, No Emojis) -->
+                        <div class="absolute -top-3 right-2 sm:right-4 bg-[#0F2C59]/90 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none hidden sm:block z-30">
+                            <div class="flex items-center justify-end space-x-1.5 mb-0.5">
+                                <svg class="w-3.5 h-3.5 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                <span class="text-[10px] font-bold text-amber-300 uppercase tracking-wider block">Legalitas Terjamin</span>
+                            </div>
                             <span class="text-xs font-extrabold text-white">Berizin Kemenhub & Kemenparekraf</span>
                         </div>
 
-                        <!-- Bottom Floating Glass Badge: Trip Stat -->
-                        <div class="absolute -bottom-3 right-2 sm:right-4 bg-[#0F2C59]/85 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none space-y-0.5 z-30">
-                            <div class="text-[10px] font-bold text-sky-300 uppercase tracking-wider">Keamanan & Kenyamanan</div>
+                        <!-- Bottom Floating Glass Badge: Trip Stat (Clean SVGs, No Emojis) -->
+                        <div class="absolute -bottom-3 right-2 sm:right-4 bg-[#0F2C59]/90 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none space-y-0.5 z-30">
+                            <div class="flex items-center justify-end space-x-1 mb-0.5">
+                                <svg class="w-3.5 h-3.5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                                <span class="text-[10px] font-bold text-sky-300 uppercase tracking-wider">Keamanan & Kenyamanan</span>
+                            </div>
                             <div class="text-xs font-extrabold text-white">1.500+ Trip Rombongan Sukses</div>
-                            <div class="text-[10px] text-amber-400 font-semibold">★ 99% Kepuasan Pelanggan</div>
-                        </div>
-
-                        <!-- User Interactive Hint Pill -->
-                        <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15 text-[10px] font-medium text-slate-300 pointer-events-none flex items-center space-x-1.5 whitespace-nowrap z-20">
-                            <svg class="w-3.5 h-3.5 text-amber-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
-                            <span>Gerakkan mouse untuk efek 3D Parallax • Klik pin ikonik untuk info</span>
+                            <div class="text-[10px] text-amber-400 font-semibold">99% Tingkat Kepuasan Pelanggan</div>
                         </div>
 
                     </div>
