@@ -56,17 +56,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
                 
-                <!-- LEFT COLUMN: EDITORIAL STORYTELLING & ACTION -->
-                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                <!-- LEFT COLUMN: EDITORIAL STORYTELLING & ACTION (COMPACT 5 COLS) -->
+                <div class="lg:col-span-5 space-y-5 text-center lg:text-left">
                     
                     <!-- Official Verification Badge -->
-                    <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-amber-300 shadow-md">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-semibold text-amber-300 shadow-md">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                         <span>Biro Wisata Resmi & Transportasi Eksekutif Lampung</span>
                     </div>
 
                     <!-- Grand Headline -->
-                    <h1 class="text-3xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight leading-[1.15]">
+                    <h1 class="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-extrabold tracking-tight leading-[1.15]">
                         Jelajahi Dunia,
                         <span class="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 font-normal my-1">
                             Ciptakan Cerita Tak Terlupakan
@@ -75,31 +75,31 @@
                     </h1>
 
                     <!-- Storytelling Paragraph -->
-                    <p class="text-sm sm:text-base text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                        Spesialis sewa armada bus pariwisata (Big Bus SHD 50 Seat, HiAce Premio), paket liburan bahari Pahawang-Kiluan, study tour edukatif sekolah & kampus, serta kunjungan kerja dinas dan BUMN dengan standar kenyamanan eksekutif terpercaya.
+                    <p class="text-xs sm:text-sm text-slate-300 max-w-md mx-auto lg:mx-0 leading-relaxed">
+                        Spesialis sewa armada bus pariwisata (Big Bus SHD 50 Seat, HiAce Premio), paket liburan bahari Pahawang-Kiluan, study tour sekolah & kampus, serta kunjungan dinas dan BUMN terpercaya.
                     </p>
 
-                    <!-- 4 Fitur Armada & Layanan Unggulan (Teks Bersih Minimalis, Tanpa Icon / Emote) -->
-                    <div class="grid grid-cols-2 gap-2.5 max-w-lg mx-auto lg:mx-0 text-left pt-1">
-                        <div class="bg-white/5 border border-white/10 px-3.5 py-2.5 rounded-xl text-xs text-slate-200 font-medium tracking-wide">
+                    <!-- 4 Fitur Armada & Layanan Unggulan -->
+                    <div class="grid grid-cols-2 gap-2 max-w-md mx-auto lg:mx-0 text-left pt-1">
+                        <div class="bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-[11px] text-slate-200 font-medium tracking-wide">
                             Lolos Uji KIR & Resmi
                         </div>
-                        <div class="bg-white/5 border border-white/10 px-3.5 py-2.5 rounded-xl text-xs text-slate-200 font-medium tracking-wide">
+                        <div class="bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-[11px] text-slate-200 font-medium tracking-wide">
                             Full AC & Reclining Seat
                         </div>
-                        <div class="bg-white/5 border border-white/10 px-3.5 py-2.5 rounded-xl text-xs text-slate-200 font-medium tracking-wide">
+                        <div class="bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-[11px] text-slate-200 font-medium tracking-wide">
                             Smart TV & Karaoke
                         </div>
-                        <div class="bg-white/5 border border-white/10 px-3.5 py-2.5 rounded-xl text-xs text-slate-200 font-medium tracking-wide">
+                        <div class="bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-[11px] text-slate-200 font-medium tracking-wide">
                             USB Charger Tiap Kursi
                         </div>
                     </div>
 
                     <!-- Interactive Quick Search / Filter Bar -->
-                    <div class="pt-2 max-w-xl mx-auto lg:mx-0">
-                        <form action="{{ route('packages.index') }}" method="GET" class="bg-white/10 backdrop-blur-xl p-2 rounded-2xl border border-white/15 shadow-2xl flex flex-col sm:flex-row gap-2">
+                    <div class="pt-1 max-w-md mx-auto lg:mx-0">
+                        <form action="{{ route('packages.index') }}" method="GET" class="bg-white/10 backdrop-blur-xl p-1.5 rounded-2xl border border-white/15 shadow-2xl flex flex-col sm:flex-row gap-2">
                             <div class="flex-grow flex items-center px-3 py-2 bg-white/5 rounded-xl border border-white/5">
-                                <svg class="w-4 h-4 text-amber-400 shrink-0 mr-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                <svg class="w-4 h-4 text-amber-400 shrink-0 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 <select name="category" class="bg-transparent text-white text-xs font-semibold focus:outline-none w-full cursor-pointer [&>option]:text-slate-800">
                                     <option value="">Semua Destinasi & Sewa Armada</option>
                                     <option value="armada">Sewa Big Bus SHD 50 Seat / HiAce</option>
@@ -108,7 +108,7 @@
                                     <option value="nusantara">Wisata Nusantara (Jogja, Bromo, Bajo)</option>
                                 </select>
                             </div>
-                            <button type="submit" class="px-6 py-3 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-bold text-xs shadow-md transition flex items-center justify-center space-x-2 shrink-0">
+                            <button type="submit" class="px-5 py-2.5 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-bold text-xs shadow-md transition flex items-center justify-center space-x-1.5 shrink-0">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                                 <span>Cari Paket</span>
                             </button>
@@ -116,28 +116,28 @@
                     </div>
 
                     <!-- Main Action CTAs -->
-                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+                    <div class="pt-1 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
                         <a href="https://wa.me/{{ $waNumber }}?text=Halo%20Admin%20Nirwana%20Tour,%20saya%20tertarik%20konsultasi%20sewa%20bus%20dan%20paket%20wisata."
                            target="_blank"
-                           class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2.5 transition transform hover:-translate-y-0.5">
+                           class="w-full sm:w-auto px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2 transition transform hover:-translate-y-0.5">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                            <span>Pesan Sewa Bus via WhatsApp</span>
+                            <span>Pesan via WhatsApp</span>
                         </a>
                         <a href="{{ route('services') }}"
-                           class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm backdrop-blur-md flex items-center justify-center space-x-2 transition">
-                            <span>Spesifikasi Armada Bus</span>
+                           class="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs sm:text-sm backdrop-blur-md flex items-center justify-center space-x-1.5 transition">
+                            <span>Spesifikasi Armada</span>
                             <span>→</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- RIGHT COLUMN: CLEAN HERO DIORAMA SHOWCASE (USING BUS.PNG, NO EMOJIS, NO 3D CANVAS) -->
-                <div class="lg:col-span-6 relative flex items-center justify-center">
+                <!-- RIGHT COLUMN: PROMINENT HERO DIORAMA SHOWCASE (EXPANDED 7 COLS) -->
+                <div class="lg:col-span-7 relative flex items-center justify-center lg:justify-end">
                     
-                    <div class="relative w-full max-w-[540px] aspect-square flex items-center justify-center select-none">
+                    <div class="relative w-full max-w-[580px] sm:max-w-[640px] lg:max-w-[680px] xl:max-w-[720px] aspect-square flex items-center justify-center select-none">
                         
                         <!-- Dynamic Contact Ground Shadow beneath the Showcase -->
-                        <div class="absolute -bottom-2 sm:-bottom-4 w-[75%] h-14 bg-black/60 rounded-[100%] blur-xl animate-pulse-shadow-subtle pointer-events-none"></div>
+                        <div class="absolute -bottom-2 sm:-bottom-4 w-[85%] h-16 bg-black/65 rounded-[100%] blur-2xl animate-pulse-shadow-subtle pointer-events-none"></div>
 
                         <!-- Floating Showcase Container -->
                         <div class="relative w-full h-full flex items-center justify-center animate-float-subtle">
@@ -145,7 +145,7 @@
                             <!-- Master Image: bus.png -->
                             <img src="{{ asset('images/bus.png') }}" 
                                  alt="Nirwana Tour Travel Bus Pariwisata Lampung" 
-                                 class="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)]"
+                                 class="w-full h-full object-contain filter drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)] scale-105"
                                  loading="eager">
 
                         </div>
