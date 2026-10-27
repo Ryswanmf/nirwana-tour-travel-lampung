@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Nirwana Tour Lampung — Biro Perjalanan Wisata & Sewa Bus Terpercaya')</title>
     <meta name="description" content="@yield('meta_description', 'Biro perjalanan wisata resmi di Lampung melayani paket wisata bahari Pahawang, study tour sekolah, kunjungan industri, dinas, dan sewa bus pariwisata.')">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -68,11 +71,11 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Brand Logo -->
                 <a href="{{ route('home') }}" class="flex items-center space-x-3 group">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-[#0284C7] to-[#0F2C59] flex items-center justify-center text-white shadow-md shadow-sky-500/20 group-hover:scale-105 transition">
-                        <svg class="w-6 h-6 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    </div>
-                    <div>
-                        <div class="text-xl font-extrabold tracking-tight text-[#0F2C59] group-hover:text-[#0284C7] transition">
+                    <img src="{{ asset('images/logo-nirwana.png') }}" 
+                         alt="Nirwana Tour Lampung Logo" 
+                         class="h-12 w-auto object-contain group-hover:scale-105 transition duration-200">
+                    <div class="hidden sm:block">
+                        <div class="text-xl font-extrabold tracking-tight text-[#0F2C59] group-hover:text-[#0284C7] transition leading-tight">
                             NIRWANA <span class="text-[#0284C7]">TOUR</span>
                         </div>
                         <div class="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">
@@ -207,9 +210,9 @@
                 <!-- Col 1: Brand Info -->
                 <div class="space-y-4">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#0284C7] to-amber-500 flex items-center justify-center text-white shadow">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        </div>
+                        <img src="{{ asset('images/logo-nirwana.png') }}" 
+                             alt="Nirwana Tour Lampung Logo" 
+                             class="h-11 w-auto object-contain bg-white/10 p-1 rounded-xl">
                         <span class="text-xl font-extrabold text-white tracking-tight">NIRWANA TOUR</span>
                     </div>
                     <p class="text-sm text-slate-400 leading-relaxed">

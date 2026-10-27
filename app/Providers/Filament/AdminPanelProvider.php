@@ -29,6 +29,9 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Nirwana Tour Admin CMS')
+            ->brandLogo(fn () => asset('images/logo-nirwana.png'))
+            ->brandLogoHeight('2.5rem')
+            ->favicon(asset('favicon.png'))
             ->colors([
                 'primary' => Color::Sky,
             ])
