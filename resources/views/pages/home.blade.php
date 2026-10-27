@@ -26,670 +26,272 @@
     }
 }">
 
-    <!-- HERO SECTION: REAL BUS DRIVING CONTINUOUSLY ON ASPHALT HIGHWAY -->
-    <section class="relative bg-[#050D1A] text-white overflow-hidden py-10 sm:py-16 lg:py-20 border-b border-white/10"
-             x-data="{
-                 speed: 'normal',
-                 speedKmh: 88,
-                 teloletActive: false,
-                 headlightHigh: true,
-                 honkCount: 0,
-                 setSpeed(mode) {
-                     this.speed = mode;
-                     if (mode === 'slow') this.speedKmh = 60;
-                     else if (mode === 'normal') this.speedKmh = 88;
-                     else if (mode === 'fast') this.speedKmh = 110;
-                 },
-                 playTelolet() {
-                     this.honkCount++;
-                     this.teloletActive = true;
-                     setTimeout(() => { this.teloletActive = false; }, 2200);
+    <!-- HERO SECTION: 3D DIORAMA WITH MATCHING 3D BACKGROUND -->
+    <section class="relative bg-[#061224] text-white overflow-hidden py-14 sm:py-20 lg:py-24 border-b border-white/10">
+        
+        <!-- THREE.JS 3D BACKGROUND CANVAS (VOLUMETRIC CLOUDS, SUNLIGHT PARTICLES & COMPASS RINGS) -->
+        <div id="hero-3d-background" class="absolute inset-0 pointer-events-none z-0"></div>
 
-                     try {
-                         const AudioContext = window.AudioContext || window.webkitAudioContext;
-                         if (!AudioContext) return;
-                         const ctx = new AudioContext();
-                         // Cheerful brass melody (E4, G4, A4, B4, D5, E5...)
-                         const notes = [329.63, 392.00, 440.00, 493.88, 587.33, 659.25, 493.88, 440.00, 392.00, 329.63, 392.00, 493.88];
-                         const durations = [0.14, 0.14, 0.14, 0.18, 0.18, 0.28, 0.14, 0.14, 0.14, 0.14, 0.16, 0.35];
-                         let t = ctx.currentTime;
+        <!-- Ambient Luxury Radial Glows (Matching bus.png Lighting) -->
+        <div class="absolute -top-32 left-1/4 w-[550px] h-[550px] bg-[#0284C7]/20 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="absolute top-1/3 -right-20 w-[500px] h-[500px] bg-amber-500/15 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute -bottom-20 left-1/3 w-96 h-96 bg-sky-500/10 rounded-full blur-[130px] pointer-events-none"></div>
 
-                         notes.forEach((freq, i) => {
-                             const osc = ctx.createOscillator();
-                             const gain = ctx.createGain();
-                             const filter = ctx.createBiquadFilter();
-
-                             osc.type = 'sawtooth';
-                             osc.frequency.setValueAtTime(freq, t);
-
-                             filter.type = 'lowpass';
-                             filter.frequency.setValueAtTime(1400, t);
-
-                             gain.gain.setValueAtTime(0, t);
-                             gain.gain.linearRampToValueAtTime(0.2, t + 0.02);
-                             gain.gain.exponentialRampToValueAtTime(0.001, t + durations[i]);
-
-                             osc.connect(filter);
-                             filter.connect(gain);
-                             gain.connect(ctx.destination);
-
-                             osc.start(t);
-                             osc.stop(t + durations[i] + 0.02);
-                             t += durations[i] * 0.95;
-                         });
-                     } catch(e) {}
-                 }
-             }">
-
-        <!-- Custom CSS for 60FPS Hardware-Accelerated Road & Bus Dynamics -->
+        <!-- Custom CSS for Floating 3D Diorama Island -->
         <style>
-            @keyframes roadScrollNormal {
-                0% { background-position-x: 0px; }
-                100% { background-position-x: 140px; }
-            }
-            @keyframes roadScrollSlow {
-                0% { background-position-x: 0px; }
-                100% { background-position-x: 140px; }
-            }
-            @keyframes roadScrollFast {
-                0% { background-position-x: 0px; }
-                100% { background-position-x: 140px; }
-            }
-            .road-anim-normal {
-                animation: roadScrollNormal 0.42s linear infinite;
-            }
-            .road-anim-slow {
-                animation: roadScrollSlow 0.65s linear infinite;
-            }
-            .road-anim-fast {
-                animation: roadScrollFast 0.28s linear infinite;
-            }
-
-            @keyframes busSuspensionLive {
+            @keyframes floatIsland {
                 0%, 100% { transform: translateY(0px) rotate(0deg); }
-                20% { transform: translateY(-3px) rotate(-0.25deg); }
-                45% { transform: translateY(-0.8px) rotate(0.1deg); }
-                70% { transform: translateY(-3.8px) rotate(0.2deg); }
-                88% { transform: translateY(-1.2px) rotate(-0.1deg); }
+                50% { transform: translateY(-14px) rotate(0.4deg); }
             }
-            .bus-cruising {
-                animation: busSuspensionLive 1.15s ease-in-out infinite;
+            .animate-float-diorama {
+                animation: floatIsland 5s ease-in-out infinite;
             }
 
-            @keyframes teloletJumpLive {
-                0% { transform: translateY(0) scale(1); }
-                20% { transform: translateY(-18px) scale(1.025) rotate(-1.2deg); }
-                45% { transform: translateY(-5px) scale(0.99); }
-                70% { transform: translateY(-14px) scale(1.015) rotate(0.8deg); }
-                100% { transform: translateY(0) scale(1); }
+            @keyframes pulseShadow {
+                0%, 100% { transform: scale(1); opacity: 0.7; }
+                50% { transform: scale(0.92); opacity: 0.45; }
             }
-            .bus-telolet-jump {
-                animation: teloletJumpLive 1.1s ease-out;
+            .animate-pulse-shadow {
+                animation: pulseShadow 5s ease-in-out infinite;
             }
 
-            @keyframes wheelSpinCCW {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(-360deg); }
+            @keyframes beaconGlow {
+                0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+                70% { transform: scale(1.15); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
             }
-            .wheel-spin-normal {
-                animation: wheelSpinCCW 0.28s linear infinite;
-            }
-            .wheel-spin-slow {
-                animation: wheelSpinCCW 0.45s linear infinite;
-            }
-            .wheel-spin-fast {
-                animation: wheelSpinCCW 0.18s linear infinite;
-            }
-
-            @keyframes mountainDrift {
-                0% { background-position-x: 0px; }
-                100% { background-position-x: 800px; }
-            }
-            .mountain-parallax {
-                animation: mountainDrift 35s linear infinite;
+            .animate-beacon {
+                animation: beaconGlow 2s infinite;
             }
         </style>
 
-        <!-- Ambient Atmospheric Lighting Glows -->
-        <div class="absolute -top-32 left-1/3 w-[600px] h-[600px] bg-[#0284C7]/15 rounded-full blur-[150px] pointer-events-none"></div>
-        <div class="absolute top-1/2 -right-20 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none"></div>
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            
-            <!-- Hero Header: Headline & Trust Badge -->
-            <div class="max-w-3xl mx-auto text-center space-y-3 mb-6 sm:mb-8">
-                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-amber-300 shadow-md">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>Biro Wisata Resmi & Sewa Bus Pariwisata Eksekutif Lampung</span>
-                </div>
-
-                <h1 class="text-3xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight leading-[1.15]">
-                    Kemanapun Tujuannya,
-                    <span class="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 font-normal my-1">
-                        Armada Eksekutif Siap Meluncur
-                    </span>
-                    Tanpa Henti Menemani Anda.
-                </h1>
-
-                <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                    Armada Big Bus Jetbus 5 SHD, Medium Bus, dan HiAce Premio berfasilitas mewah, dingin, dan dikemudikan driver profesional berpengalaman lintas Tol Trans Sumatera & Trans Jawa.
-                </p>
-            </div>
-
-            <!-- THE CINEMATIC ENDLESS HIGHWAY DRIVING THEATRE -->
-            <div class="relative max-w-5xl mx-auto rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-gradient-to-b from-[#061224] to-[#0A1B36] mb-8 select-none">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
                 
-                <!-- Sky & Distant Mountain Horizon (Parallax Layer) -->
-                <div class="relative w-full h-36 sm:h-44 overflow-hidden bg-gradient-to-b from-[#020712] via-[#08152B] to-[#0D2244]">
-                    <!-- Starry Night Particles -->
-                    <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+                <!-- LEFT COLUMN: EDITORIAL STORYTELLING & ACTION -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
                     
-                    <!-- Crescent Moon & Twilight Glow -->
-                    <div class="absolute top-4 right-10 sm:right-16 flex items-center space-x-2 opacity-85">
-                        <span class="text-2xl sm:text-3xl filter drop-shadow-[0_0_12px_rgba(254,240,138,0.6)]">🌙</span>
-                        <div class="hidden sm:block text-left">
-                            <span class="text-[10px] font-bold text-amber-300 uppercase tracking-widest block">Rute Trans Sumatera</span>
-                            <span class="text-[11px] text-slate-300">Tol Bakauheni — Terbanggi Besar</span>
+                    <!-- Official Verification Badge -->
+                    <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-amber-300 shadow-md">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Biro Wisata Resmi & Transportasi Eksekutif Lampung</span>
+                    </div>
+
+                    <!-- Grand Headline -->
+                    <h1 class="text-3xl sm:text-5xl lg:text-[54px] font-extrabold tracking-tight leading-[1.15]">
+                        Jelajahi Dunia,
+                        <span class="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 font-normal my-1">
+                            Ciptakan Cerita Tak Terlupakan
+                        </span>
+                        Bersama Nirwana Tour.
+                    </h1>
+
+                    <!-- Storytelling Paragraph -->
+                    <p class="text-sm sm:text-base text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Spesialis sewa armada bus pariwisata (Big Bus SHD 50 Seat, HiAce Premio), paket liburan bahari Pahawang-Kiluan, study tour edukatif sekolah & kampus, serta kunjungan kerja dinas dan BUMN dengan standar kenyamanan eksekutif terpercaya.
+                    </p>
+
+                    <!-- 4 Fitur Armada & Layanan Unggulan -->
+                    <div class="grid grid-cols-2 gap-2.5 max-w-lg mx-auto lg:mx-0 text-left pt-1">
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
+                            <span class="text-amber-400 text-sm">🛡️</span>
+                            <span class="font-semibold truncate">Lolos Uji KIR & Resmi</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
+                            <span class="text-sky-400 text-sm">❄️</span>
+                            <span class="font-semibold truncate">Full AC & Reclining Seat</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
+                            <span class="text-emerald-400 text-sm">🎤</span>
+                            <span class="font-semibold truncate">Smart TV & Karaoke</span>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
+                            <span class="text-amber-400 text-sm">⚡</span>
+                            <span class="font-semibold truncate">USB Charger Tiap Kursi</span>
                         </div>
                     </div>
 
-                    <!-- Distant Mountain Silhouettes (Gunung Pesawaran & Rajabasa Lampung) -->
-                    <div class="absolute bottom-0 inset-x-0 h-24 opacity-35 mountain-parallax pointer-events-none"
-                         style="background-image: radial-gradient(ellipse at bottom, #0284c7 0%, transparent 70%);">
-                        <svg class="w-full h-full text-[#030d1e] fill-current" preserveAspectRatio="none" viewBox="0 0 1200 120">
-                            <path d="M0,120 L0,80 Q150,20 300,70 T600,40 T900,65 T1200,50 L1200,120 Z"></path>
-                        </svg>
-                    </div>
-
-                    <!-- Highway Billboard: Nirwana Tour & Travel Lampung -->
-                    <div class="absolute top-4 left-6 sm:left-10 bg-slate-900/80 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/15 shadow-lg flex items-center space-x-2.5">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-                        <span class="text-xs font-bold text-white tracking-wide">Nirwana Tour Trans Jawa-Sumatera</span>
-                    </div>
-
-                    <!-- Live Cockpit HUD Telemetry Overlay -->
-                    <div class="absolute bottom-3 left-4 sm:left-8 flex flex-wrap items-center gap-2 text-xs">
-                        <div class="bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-emerald-300 font-mono font-bold flex items-center space-x-1.5">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span x-text="speedKmh + ' KM/JAM'">88 KM/JAM</span>
-                        </div>
-                        <div class="bg-black/60 backdrop-blur-md px-3 py-1 rounded-lg border border-white/10 text-sky-200 text-[11px] font-semibold hidden sm:flex items-center space-x-1">
-                            <span>❄️ AC 18°C</span>
-                            <span>•</span>
-                            <span>🎤 Karaoke On</span>
-                            <span>•</span>
-                            <span>🛡️ Unit KIR Aktif</span>
-                        </div>
-                    </div>
-
-                    <!-- Soundwave Balloon (Appears when Telolet is Honked) -->
-                    <div x-show="teloletActive"
-                         x-transition:enter="transition ease-out duration-200"
-                         x-transition:enter-start="opacity-0 -translate-y-4 scale-75"
-                         x-transition:enter-end="opacity-100 translate-y-0 scale-100"
-                         x-transition:leave="transition ease-in duration-300"
-                         x-transition:leave-start="opacity-100 translate-y-0 scale-100"
-                         x-transition:leave-end="opacity-0 -translate-y-4 scale-75"
-                         x-cloak
-                         class="absolute top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-900 font-extrabold text-xs sm:text-sm px-4 py-2 rounded-2xl shadow-2xl flex items-center space-x-2 border-2 border-white animate-bounce z-40">
-                        <span class="text-lg">🎺</span>
-                        <span>TELOLET TELOLET BASURI NIRWANA! 🎶</span>
-                    </div>
-                </div>
-
-                <!-- THE CONTINUOUS HIGHWAY ASPHALT & BUS RUNNING STAGE -->
-                <div class="relative w-full h-[220px] sm:h-[280px] lg:h-[320px] overflow-hidden bg-[#101724]">
-                    
-                    <!-- Upper Concrete Road Divider / Guardrail -->
-                    <div class="absolute top-0 inset-x-0 h-4 bg-gradient-to-b from-[#1e293b] to-[#0f172a] border-b border-slate-700/60 flex items-center justify-around overflow-hidden">
-                        <template x-for="i in 12" :key="i">
-                            <div class="w-8 h-1.5 bg-amber-400/70 rounded-full"></div>
-                        </template>
-                    </div>
-
-                    <!-- Dark Asphalt Surface with High-Speed Continuous Moving White/Yellow Stripes -->
-                    <div class="absolute inset-0 top-4 bottom-7 bg-[#141b27]"
-                         :class="speed === 'fast' ? 'road-anim-fast' : (speed === 'slow' ? 'road-anim-slow' : 'road-anim-normal')"
-                         style="background-image: 
-                            linear-gradient(to right, rgba(254, 240, 138, 0.9) 0px, rgba(254, 240, 138, 0.9) 65px, transparent 65px, transparent 130px),
-                            linear-gradient(to right, rgba(255, 255, 255, 0.7) 0px, rgba(255, 255, 255, 0.7) 65px, transparent 65px, transparent 130px);
-                            background-size: 130px 4px, 130px 4px;
-                            background-position: 0 45%, 0 78%;
-                            background-repeat: repeat-x, repeat-x;">
-                        
-                        <!-- Asphalt Grain & Road Surface Texture -->
-                        <div class="absolute inset-0 opacity-15 mix-blend-overlay bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:8px_8px]"></div>
-
-                        <!-- Continuous Speed Lines on Road Surface -->
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent pointer-events-none"></div>
-                    </div>
-
-                    <!-- Lower Road Curb & Reflective Cat's Eyes (Mata Kucing) -->
-                    <div class="absolute bottom-0 inset-x-0 h-7 bg-gradient-to-t from-slate-900 to-[#1e293b] border-t border-slate-700/80 flex items-center justify-around overflow-hidden">
-                        <template x-for="i in 16" :key="i">
-                            <div class="w-2.5 h-2.5 rounded-full bg-red-500/80 shadow-[0_0_8px_#ef4444]"></div>
-                        </template>
-                    </div>
-
-                    <!-- THE REAL JETBUS 5 SHD EXECUTIVE TOUR BUS (CRUISING ON THE ASPHALT) -->
-                    <div class="absolute left-1/2 -translate-x-[48%] top-1/2 -translate-y-[45%] w-[330px] sm:w-[460px] lg:w-[580px] pointer-events-none select-none z-20"
-                         :class="teloletActive ? 'bus-telolet-jump' : 'bus-cruising'">
-                        
-                        <!-- Realistic Tire Road Contact Shadow -->
-                        <div class="absolute -bottom-2 sm:-bottom-3 left-10 right-8 h-6 sm:h-8 bg-black/80 rounded-full blur-md"></div>
-
-                        <!-- VOLUMETRIC HEADLIGHT BEAM (LIGHTING UP THE ASPHALT FORWARD) -->
-                        <div x-show="headlightHigh"
-                             class="absolute -left-48 sm:-left-64 lg:-left-80 top-[42%] w-52 sm:w-72 lg:w-96 h-24 sm:h-32 pointer-events-none z-10 transition-opacity duration-300"
-                             :class="teloletActive ? 'opacity-100 scale-105' : 'opacity-85'"
-                             style="background: linear-gradient(to left, rgba(254, 240, 138, 0.75) 0%, rgba(254, 240, 138, 0.35) 45%, rgba(254, 240, 138, 0.08) 75%, transparent 100%);
-                                    clip-path: polygon(100% 42%, 100% 58%, 0% 100%, 0% 0%);
-                                    filter: blur(4px);">
-                        </div>
-
-                        <!-- Taillight Red Flare (Glowing Behind the Bus) -->
-                        <div class="absolute -right-4 top-[56%] w-12 h-12 bg-rose-500/60 rounded-full blur-lg pointer-events-none"></div>
-
-                        <!-- Real Cutout Bus Image -->
-                        <div class="relative w-full">
-                            <img src="{{ asset('images/bus-real.png') }}" 
-                                 alt="Armada Bus Pariwisata Jetbus 5 Nirwana Tour Lampung" 
-                                 class="w-full h-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.7)]"
-                                 loading="eager">
-
-                            <!-- ACTIVE ROTATING FRONT WHEEL (ALLOY RIM SPINNER) -->
-                            <div class="absolute left-[49.2%] top-[77.8%] -translate-x-1/2 -translate-y-1/2 w-[10.4%] aspect-square rounded-full overflow-hidden pointer-events-none"
-                                 :class="speed === 'fast' ? 'wheel-spin-fast' : (speed === 'slow' ? 'wheel-spin-slow' : 'wheel-spin-normal')"
-                                 style="background: radial-gradient(circle, rgba(226, 232, 240, 0.6) 0%, rgba(148, 163, 184, 0.4) 40%, rgba(30, 41, 59, 0.8) 70%, transparent 100%);
-                                        box-shadow: inset 0 0 4px rgba(0,0,0,0.8);">
-                                <!-- Blurred Spinning Spokes Pattern -->
-                                <div class="w-full h-full opacity-60"
-                                     style="background: conic-gradient(from 0deg, rgba(255,255,255,0.7) 0deg, transparent 30deg, rgba(255,255,255,0.7) 60deg, transparent 90deg, rgba(255,255,255,0.7) 120deg, transparent 150deg, rgba(255,255,255,0.7) 180deg, transparent 210deg, rgba(255,255,255,0.7) 240deg, transparent 270deg, rgba(255,255,255,0.7) 300deg, transparent 330deg, rgba(255,255,255,0.7) 360deg);">
-                                </div>
+                    <!-- Interactive Quick Search / Filter Bar -->
+                    <div class="pt-2 max-w-xl mx-auto lg:mx-0">
+                        <form action="{{ route('packages.index') }}" method="GET" class="bg-white/10 backdrop-blur-xl p-2 rounded-2xl border border-white/15 shadow-2xl flex flex-col sm:flex-row gap-2">
+                            <div class="flex-grow flex items-center px-3 py-2 bg-white/5 rounded-xl border border-white/5">
+                                <svg class="w-4 h-4 text-amber-400 shrink-0 mr-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                <select name="category" class="bg-transparent text-white text-xs font-semibold focus:outline-none w-full cursor-pointer [&>option]:text-slate-800">
+                                    <option value="">Semua Destinasi & Sewa Armada</option>
+                                    <option value="armada">Sewa Big Bus SHD 50 Seat / HiAce</option>
+                                    <option value="lampung">Wisata Bahari Lampung (Pahawang, Kiluan)</option>
+                                    <option value="edukasi">Study Tour & Kunjungan Industri</option>
+                                    <option value="nusantara">Wisata Nusantara (Jogja, Bromo, Bajo)</option>
+                                </select>
                             </div>
-
-                            <!-- ACTIVE ROTATING REAR WHEEL (ALLOY RIM SPINNER) -->
-                            <div class="absolute left-[82.2%] top-[75.6%] -translate-x-1/2 -translate-y-1/2 w-[9.8%] aspect-square rounded-full overflow-hidden pointer-events-none"
-                                 :class="speed === 'fast' ? 'wheel-spin-fast' : (speed === 'slow' ? 'wheel-spin-slow' : 'wheel-spin-normal')"
-                                 style="background: radial-gradient(circle, rgba(226, 232, 240, 0.6) 0%, rgba(148, 163, 184, 0.4) 40%, rgba(30, 41, 59, 0.8) 70%, transparent 100%);
-                                        box-shadow: inset 0 0 4px rgba(0,0,0,0.8);">
-                                <!-- Blurred Spinning Spokes Pattern -->
-                                <div class="w-full h-full opacity-60"
-                                     style="background: conic-gradient(from 0deg, rgba(255,255,255,0.7) 0deg, transparent 30deg, rgba(255,255,255,0.7) 60deg, transparent 90deg, rgba(255,255,255,0.7) 120deg, transparent 150deg, rgba(255,255,255,0.7) 180deg, transparent 210deg, rgba(255,255,255,0.7) 240deg, transparent 270deg, rgba(255,255,255,0.7) 300deg, transparent 330deg, rgba(255,255,255,0.7) 360deg);">
-                                </div>
-                            </div>
-
-                            <!-- Subtle Road Dust Particle Trails Behind Rear Wheels -->
-                            <div class="absolute -right-8 bottom-3 w-16 h-8 bg-gradient-to-r from-white/10 to-transparent blur-md rounded-full pointer-events-none"></div>
-
-                        </div>
+                            <button type="submit" class="px-6 py-3 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-bold text-xs shadow-md transition flex items-center justify-center space-x-2 shrink-0">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                                <span>Cari Paket</span>
+                            </button>
+                        </form>
                     </div>
 
-                </div>
-
-                <!-- DRIVER COCKPIT & INTERACTIVE ACTION CONTROLS (BOTTOM BAR) -->
-                <div class="bg-slate-900/95 backdrop-blur-xl px-4 sm:px-6 py-3.5 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
-                    
-                    <!-- Left: Interactive Controls (Telolet & Speed) -->
-                    <div class="flex items-center space-x-2">
-                        <!-- Telolet Horn Button -->
-                        <button @click="playTelolet()"
-                                type="button"
-                                class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold flex items-center space-x-1.5 shadow-md shadow-amber-500/30 transition transform active:scale-95 cursor-pointer">
-                            <span class="text-base">🔊</span>
-                            <span>Klakson Telolet</span>
-                        </button>
-
-                        <!-- Speed Mode Selector -->
-                        <div class="hidden sm:flex items-center space-x-1 bg-white/5 p-1 rounded-xl border border-white/10">
-                            <button @click="setSpeed('slow')"
-                                    type="button"
-                                    :class="speed === 'slow' ? 'bg-[#0284C7] text-white' : 'text-slate-400 hover:text-white'"
-                                    class="px-2.5 py-1 rounded-lg font-semibold text-[11px] transition">
-                                60 km/h
-                            </button>
-                            <button @click="setSpeed('normal')"
-                                    type="button"
-                                    :class="speed === 'normal' ? 'bg-[#0284C7] text-white' : 'text-slate-400 hover:text-white'"
-                                    class="px-2.5 py-1 rounded-lg font-semibold text-[11px] transition">
-                                88 km/h
-                            </button>
-                            <button @click="setSpeed('fast')"
-                                    type="button"
-                                    :class="speed === 'fast' ? 'bg-[#0284C7] text-white' : 'text-slate-400 hover:text-white'"
-                                    class="px-2.5 py-1 rounded-lg font-semibold text-[11px] transition">
-                                110 km/h
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Right: Direct WhatsApp Booking CTA for this Bus -->
-                    <div class="flex items-center space-x-2.5">
-                        <span class="text-[11px] text-slate-300 hidden md:inline">Suka dengan armada ini?</span>
-                        <a href="https://wa.me/{{ $waNumber }}?text=Halo%20Admin%20Nirwana%20Tour,%20saya%20tertarik%20sewa%20armada%20Big%20Bus%20Jetbus%205%20SHD%20untuk%20rombongan%20kami."
+                    <!-- Main Action CTAs -->
+                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
+                        <a href="https://wa.me/{{ $waNumber }}?text=Halo%20Admin%20Nirwana%20Tour,%20saya%20tertarik%20konsultasi%20sewa%20bus%20dan%20paket%20wisata."
                            target="_blank"
-                           class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold flex items-center space-x-2 shadow-lg shadow-emerald-500/25 transition transform hover:-translate-y-0.5">
+                           class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2.5 transition transform hover:-translate-y-0.5">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                            <span>Pesan Bus Ini via WhatsApp</span>
+                            <span>Pesan Sewa Bus via WhatsApp</span>
+                        </a>
+                        <a href="{{ route('services') }}"
+                           class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm backdrop-blur-md flex items-center justify-center space-x-2 transition">
+                            <span>Spesifikasi Armada Bus</span>
                             <span>→</span>
                         </a>
                     </div>
+                </div>
 
+                <!-- RIGHT COLUMN: 3D DIORAMA ISLAND SHOWCASE (USING BUS.PNG) -->
+                <div class="lg:col-span-6 relative flex items-center justify-center"
+                     x-data="{
+                         rotateX: 0,
+                         rotateY: 0,
+                         activeSpot: null,
+                         handleMouseMove(e) {
+                             const rect = $el.getBoundingClientRect();
+                             const x = e.clientX - rect.left;
+                             const y = e.clientY - rect.top;
+                             const centerX = rect.width / 2;
+                             const centerY = rect.height / 2;
+                             this.rotateY = ((x - centerX) / centerX) * 10;
+                             this.rotateX = -((y - centerY) / centerY) * 10;
+                         },
+                         handleMouseLeave() {
+                             this.rotateX = 0;
+                             this.rotateY = 0;
+                             this.activeSpot = null;
+                         }
+                     }"
+                     @mousemove="handleMouseMove($event)"
+                     @mouseleave="handleMouseLeave()">
+                    
+                    <div class="relative w-full max-w-[540px] aspect-square flex items-center justify-center select-none"
+                         style="perspective: 1200px;">
+                        
+                        <!-- Dynamic Contact Ground Shadow beneath Diorama Island -->
+                        <div class="absolute -bottom-2 sm:-bottom-4 w-[75%] h-14 bg-black/60 rounded-[100%] blur-xl animate-pulse-shadow pointer-events-none"></div>
+
+                        <!-- 3D Interactive Floating Diorama Container -->
+                        <div class="relative w-full h-full flex items-center justify-center animate-float-diorama"
+                             :style="'transform: rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg); transition: transform 0.12s ease-out;'">
+                            
+                            <!-- Master 3D Diorama Image (bus.png) -->
+                            <img src="{{ asset('images/bus.png') }}" 
+                                 alt="Nirwana Tour Travel 3D Bus Diorama" 
+                                 class="w-full h-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)] cursor-pointer"
+                                 loading="eager">
+
+                            <!-- INTERACTIVE 3D BEACON HOTSPOTS ON THE DIORAMA -->
+
+                            <!-- Hotspot 1: Bus Wisata Eksekutif -->
+                            <div class="absolute left-[64%] top-[62%] -translate-x-1/2 -translate-y-1/2 z-30"
+                                 @mouseenter="activeSpot = 'bus'" 
+                                 @mouseleave="activeSpot = null"
+                                 @click="activeSpot = (activeSpot === 'bus' ? null : 'bus')">
+                                <div class="w-7 h-7 rounded-full bg-red-500/90 border-2 border-white flex items-center justify-center text-xs font-bold text-white shadow-lg cursor-pointer animate-beacon hover:scale-110 transition">
+                                    🚌
+                                </div>
+                                <!-- Hotspot Tooltip -->
+                                <div x-show="activeSpot === 'bus'" 
+                                     x-transition 
+                                     x-cloak 
+                                     class="absolute bottom-9 left-1/2 -translate-x-1/2 w-48 bg-[#0F2C59]/95 backdrop-blur-md p-2.5 rounded-xl border border-white/20 shadow-2xl text-left pointer-events-none z-40">
+                                    <div class="text-[11px] font-extrabold text-amber-300">Big Bus SHD 50 Seat</div>
+                                    <div class="text-[10px] text-slate-200">Full AC, Reclining Seat, Smart TV & Karaoke</div>
+                                </div>
+                            </div>
+
+                            <!-- Hotspot 2: Candi Borobudur -->
+                            <div class="absolute left-[54%] top-[26%] -translate-x-1/2 -translate-y-1/2 z-30"
+                                 @mouseenter="activeSpot = 'borobudur'" 
+                                 @mouseleave="activeSpot = null"
+                                 @click="activeSpot = (activeSpot === 'borobudur' ? null : 'borobudur')">
+                                <div class="w-6 h-6 rounded-full bg-amber-500/90 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white shadow-lg cursor-pointer animate-beacon hover:scale-110 transition">
+                                    🏛️
+                                </div>
+                                <div x-show="activeSpot === 'borobudur'" 
+                                     x-transition 
+                                     x-cloak 
+                                     class="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 bg-[#0F2C59]/95 backdrop-blur-md p-2.5 rounded-xl border border-white/20 shadow-2xl text-left pointer-events-none z-40">
+                                    <div class="text-[11px] font-extrabold text-amber-300">Candi Borobudur & Jogja</div>
+                                    <div class="text-[10px] text-slate-200">Paket Wisata Budaya & Study Tour Nusantara</div>
+                                </div>
+                            </div>
+
+                            <!-- Hotspot 3: Monas Jakarta -->
+                            <div class="absolute left-[30%] top-[14%] -translate-x-1/2 -translate-y-1/2 z-30"
+                                 @mouseenter="activeSpot = 'monas'" 
+                                 @mouseleave="activeSpot = null"
+                                 @click="activeSpot = (activeSpot === 'monas' ? null : 'monas')">
+                                <div class="w-6 h-6 rounded-full bg-sky-500/90 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white shadow-lg cursor-pointer animate-beacon hover:scale-110 transition">
+                                    🏙️
+                                </div>
+                                <div x-show="activeSpot === 'monas'" 
+                                     x-transition 
+                                     x-cloak 
+                                     class="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 bg-[#0F2C59]/95 backdrop-blur-md p-2.5 rounded-xl border border-white/20 shadow-2xl text-left pointer-events-none z-40">
+                                    <div class="text-[11px] font-extrabold text-amber-300">Monumen Nasional (Monas)</div>
+                                    <div class="text-[10px] text-slate-200">Kunjungan Kerja BUMN & Study Tour Edukatif</div>
+                                </div>
+                            </div>
+
+                            <!-- Hotspot 4: Plang Kayu Nirwana Tour -->
+                            <div class="absolute left-[20%] top-[68%] -translate-x-1/2 -translate-y-1/2 z-30"
+                                 @mouseenter="activeSpot = 'sign'" 
+                                 @mouseleave="activeSpot = null"
+                                 @click="activeSpot = (activeSpot === 'sign' ? null : 'sign')">
+                                <div class="w-6 h-6 rounded-full bg-emerald-500/90 border-2 border-white flex items-center justify-center text-[10px] font-bold text-white shadow-lg cursor-pointer animate-beacon hover:scale-110 transition">
+                                    🏷️
+                                </div>
+                                <div x-show="activeSpot === 'sign'" 
+                                     x-transition 
+                                     x-cloak 
+                                     class="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 bg-[#0F2C59]/95 backdrop-blur-md p-2.5 rounded-xl border border-white/20 shadow-2xl text-left pointer-events-none z-40">
+                                    <div class="text-[11px] font-extrabold text-amber-300">Nirwana Tour Lampung</div>
+                                    <div class="text-[10px] text-slate-200">Biro Resmi Pimpinan Kiki M Alfin</div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Top Floating Glass Badge: Bus Status -->
+                        <div class="absolute -top-3 left-2 sm:left-4 bg-[#0F2C59]/85 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl text-left pointer-events-none space-y-1 z-30">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span class="text-[10px] font-bold text-emerald-300 uppercase tracking-wider">Armada Beroperasi</span>
+                            </div>
+                            <div class="text-xs font-extrabold text-white">Big Bus SHD & HiAce Premio</div>
+                            <div class="text-[10px] text-slate-300">Siap Rute Trans Sumatera & Trans Jawa</div>
+                        </div>
+
+                        <!-- Top Right Floating Badge: Legalitas -->
+                        <div class="absolute -top-3 right-2 sm:right-4 bg-[#0F2C59]/85 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none hidden sm:block z-30">
+                            <span class="text-[10px] font-bold text-amber-300 uppercase tracking-wider block">Legalitas Terjamin</span>
+                            <span class="text-xs font-extrabold text-white">Berizin Kemenhub & Kemenparekraf</span>
+                        </div>
+
+                        <!-- Bottom Floating Glass Badge: Trip Stat -->
+                        <div class="absolute -bottom-3 right-2 sm:right-4 bg-[#0F2C59]/85 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none space-y-0.5 z-30">
+                            <div class="text-[10px] font-bold text-sky-300 uppercase tracking-wider">Keamanan & Kenyamanan</div>
+                            <div class="text-xs font-extrabold text-white">1.500+ Trip Rombongan Sukses</div>
+                            <div class="text-[10px] text-amber-400 font-semibold">★ 99% Kepuasan Pelanggan</div>
+                        </div>
+
+                        <!-- User Interactive Hint Pill -->
+                        <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15 text-[10px] font-medium text-slate-300 pointer-events-none flex items-center space-x-1.5 whitespace-nowrap z-20">
+                            <svg class="w-3.5 h-3.5 text-amber-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
+                            <span>Gerakkan mouse untuk efek 3D Parallax • Klik pin ikonik untuk info</span>
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
-
-            <!-- INTERACTIVE BOOKING BAR COMPONENT (TRAVELOKA / TIKET STYLE) -->
-            <div x-data="{
-                activeTab: 'bus',
-                // Bus form fields
-                busType: 'Big Bus SHD (45 - 50 Seats)',
-                busPickup: 'Bandar Lampung (Kota / Bandara Radin Inten II)',
-                busDestination: 'Rute Wisata Bahari Lampung (Pahawang / Kiluan)',
-                busDate: '',
-                busDuration: '3 Hari 2 Malam',
-                // Tour package form fields
-                tourPackage: 'Eksotisme Snorkeling Pulau Pahawang & Kelagian (3H2M)',
-                tourType: 'Rombongan Kunjungan Kerja Dinas / BUMN / Kantor',
-                tourPax: '35 - 50 Orang (1 Big Bus SHD)',
-                tourDate: '',
-
-                submitBus() {
-                    const text = encodeURIComponent(
-                        'Halo Admin Nirwana Tour Lampung,\n\nSaya ingin menanyakan ketersediaan dan penawaran Sewa Armada Bus Pariwisata dengan rincian berikut:\n' +
-                        '• Jenis Armada: ' + this.busType + '\n' +
-                        '• Titik Penjemputan: ' + this.busPickup + '\n' +
-                        '• Rute / Destinasi Tujuan: ' + this.busDestination + '\n' +
-                        '• Tanggal Keberangkatan: ' + (this.busDate || 'Fleksibel / Sesuai Jadwal') + '\n' +
-                        '• Durasi Pemakaian: ' + this.busDuration + '\n\n' +
-                        'Mohon informasi ketersediaan unit dan estimasi penawaran harga resminya. Terima kasih!'
-                    );
-                    window.open('https://wa.me/{{ $waNumber }}?text=' + text, '_blank');
-                },
-
-                submitTour() {
-                    const text = encodeURIComponent(
-                        'Halo Admin Nirwana Tour Lampung,\n\nSaya tertarik konsultasi Paket Wisata Rombongan dengan rincian berikut:\n' +
-                        '• Pilihan Paket: ' + this.tourPackage + '\n' +
-                        '• Kategori Rombongan: ' + this.tourType + '\n' +
-                        '• Estimasi Jumlah Peserta: ' + this.tourPax + '\n' +
-                        '• Rencana Tanggal / Bulan: ' + (this.tourDate || 'Fleksibel / Sesuai Jadwal') + '\n\n' +
-                        'Mohon kirimkan detail susunan acara (rundown itinerary) dan proposal penawaran resminya. Terima kasih!'
-                    );
-                    window.open('https://wa.me/{{ $waNumber }}?text=' + text, '_blank');
-                }
-            }" class="max-w-5xl mx-auto">
-
-                <!-- Tab Selector Buttons -->
-                <div class="flex items-center space-x-2 p-1.5 bg-black/40 backdrop-blur-xl rounded-2xl w-fit mx-auto mb-4 border border-white/10 shadow-lg">
-                    <button @click="activeTab = 'bus'"
-                            type="button"
-                            :class="activeTab === 'bus' ? 'bg-[#0284C7] text-white shadow-lg shadow-sky-500/30' : 'text-slate-300 hover:text-white hover:bg-white/5'"
-                            class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition">
-                        <span class="text-base sm:text-lg">🚌</span>
-                        <span>Sewa Bus Pariwisata</span>
-                    </button>
-                    <button @click="activeTab = 'tour'"
-                            type="button"
-                            :class="activeTab === 'tour' ? 'bg-[#0284C7] text-white shadow-lg shadow-sky-500/30' : 'text-slate-300 hover:text-white hover:bg-white/5'"
-                            class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition">
-                        <span class="text-base sm:text-lg">🏝️</span>
-                        <span>Paket Wisata & Study Tour</span>
-                    </button>
-                </div>
-                            class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition">
-                        <span class="text-base sm:text-lg">🚌</span>
-                        <span>Sewa Bus Pariwisata</span>
-                    </button>
-                    <button @click="activeTab = 'tour'"
-                            type="button"
-                            :class="activeTab === 'tour' ? 'bg-[#0284C7] text-white shadow-lg shadow-sky-500/30' : 'text-slate-300 hover:text-white hover:bg-white/5'"
-                            class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition">
-                        <span class="text-base sm:text-lg">🏝️</span>
-                        <span>Paket Wisata & Study Tour</span>
-                    </button>
-                </div>
-
-                <!-- Main Glassmorphism Form Card -->
-                <div class="bg-white/95 backdrop-blur-2xl rounded-3xl p-5 sm:p-7 shadow-2xl border border-white/40 text-slate-800">
-
-                    <!-- TAB 1: SEWA BUS PARIWISATA -->
-                    <div x-show="activeTab === 'bus'" x-cloak class="space-y-5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            
-                            <!-- Field 1: Jenis Armada -->
-                            <div class="space-y-1.5 text-left">
-                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
-                                    <span>🚌</span>
-                                    <span>Pilihan Armada</span>
-                                </label>
-                                <div class="relative">
-                                    <select x-model="busType" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
-                                        <option value="Big Bus SHD (45 - 50 Seats)">Big Bus SHD (45 - 50 Seats)</option>
-                                        <option value="Medium Bus Pariwisata (31 - 35 Seats)">Medium Bus (31 - 35 Seats)</option>
-                                        <option value="Toyota HiAce Premio Luxury (14 Seats)">Toyota HiAce Premio (14 Seats)</option>
-                                        <option value="Toyota HiAce Commuter (14 - 15 Seats)">Toyota HiAce Commuter (15 Seats)</option>
-                                        <option value="All-New Innova Reborn (7 Seats)">All-New Innova Reborn (7 Seats)</option>
-                                    </select>
-                                </div>
-                                <span class="text-[10px] text-slate-400 block">Unit terbaru, full AC & reclining seats</span>
-                            </div>
-
-                            <!-- Field 2: Lokasi Penjemputan -->
-                            <div class="space-y-1.5 text-left">
-                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
-                                    <span>📍</span>
-                                    <span>Titik Penjemputan</span>
-                                </label>
-                                <div class="relative">
-                                    <select x-model="busPickup" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
-                                        <option value="Bandar Lampung (Kota / Bandara Radin Inten II)">Bandar Lampung (Kota / Bandara)</option>
-                                        <option value="Kota Metro & Lampung Tengah">Kota Metro & Lampung Tengah</option>
-                                        <option value="Pelabuhan Bakauheni / Lampung Selatan">Pelabuhan Bakauheni / Lamsel</option>
-                                        <option value="Kotabumi / Lampung Utara">Kotabumi / Lampung Utara</option>
-                                        <option value="DKI Jakarta & Jabodetabek">DKI Jakarta & Jabodetabek</option>
-                                        <option value="Palembang / Sumatera Selatan">Palembang / Sumatera Selatan</option>
-                                        <option value="Titik Jemput Kustom (Sesuai Permintaan)">Titik Jemput Kustom (Lainnya)</option>
-                                    </select>
-                                </div>
-                                <span class="text-[10px] text-slate-400 block">Bisa dijemput di kantor / sekolah / rumah</span>
-                            </div>
-
-                            <!-- Field 3: Rute / Destinasi Tujuan -->
-                            <div class="space-y-1.5 text-left">
-                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
-                                    <span>🗺️</span>
-                                    <span>Destinasi Tujuan</span>
-                                </label>
-                                <div class="relative">
-                                    <select x-model="busDestination" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
-                                        <option value="Rute Wisata Bahari Lampung (Pahawang / Kiluan)">Wisata Lampung (Pahawang, Kiluan, Krui)</option>
-                                        <option value="Rute Trans Jawa (Jakarta, Bandung, Jogja, Bromo, Bali)">Trans Jawa (Jakarta, Bandung, Jogja, Bali)</option>
-                                        <option value="Rute Trans Sumatera (Palembang, Jambi, Padang, Medan)">Trans Sumatera (Palembang, Padang, Medan)</option>
-                                        <option value="City Tour & Antar-Jemput Dinas Rombongan Lampung">City Tour & Kegiatan Dinas Lampung</option>
-                                        <option value="Kunjungan Industri & Study Tour Sekolah">Kunjungan Industri & Study Tour</option>
-                                    </select>
-                                </div>
-                                <span class="text-[10px] text-slate-400 block">Jalur Tol Trans Sumatera & Trans Jawa</span>
-                            </div>
-
-                            <!-- Field 4: Tanggal & Durasi -->
-                            <div class="space-y-1.5 text-left">
-                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
-                                    <span>📅</span>
-                                    <span>Tanggal & Durasi</span>
-                                </label>
-                                <div class="grid grid-cols-2 gap-1.5">
-                                    <input type="date" x-model="busDate" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition">
-                                    <select x-model="busDuration" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
-                                        <option value="1 Hari (PP)">1 Hari (PP)</option>
-                                        <option value="2 Hari 1 Malam">2H 1M</option>
-                                        <option value="3 Hari 2 Malam">3H 2M</option>
-                                        <option value="4 Hari 3 Malam">4H 3M</option>
-                                        <option value="5 Hari atau Lebih">5+ Hari</option>
-                                    </select>
-                                </div>
-                                <span class="text-[10px] text-slate-400 block">Pilih tanggal rencana perjalanan</span>
-                            </div>
-
-                        </div>
-
-                        <!-- CTA Action Bar for Bus -->
-                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-100">
-                            <div class="text-left text-xs text-slate-500 flex items-center space-x-2">
-                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                <span>Unit siap beroperasi • Lolos uji KIR & Berizin Kemenhub</span>
-                            </div>
-                            <button @click="submitBus()"
-                                    type="button"
-                                    class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2.5 transition transform hover:-translate-y-0.5 cursor-pointer">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                                <span>Cek Ketersediaan & Estimasi Harga via WhatsApp</span>
-                                <span>→</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- TAB 2: PAKET WISATA & STUDY TOUR -->
-                    <div x-show="activeTab === 'tour'" x-cloak class="space-y-5">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            
-                            <!-- Field 1: Pilihan Paket Wisata -->
-                            <div class="space-y-1.5 text-left">
-                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
-                                    <span>🏝️</span>
-                                    <span>Pilihan Paket Wisata</span>
-                                </label>
-                                <div class="relative">
-                                    <select x-model="tourPackage" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
-                                        <option value="Eksotisme Snorkeling Pulau Pahawang & Kelagian (3H2M)">Pahawang & Kelagian (3H2M)</option>
-                                        <option value="Teluk Kiluan Dolphin Tour & Laguna Gayau (2H1M)">Teluk Kiluan Dolphin Tour (2H1M)</option>
-                                        <option value="Taman Nasional Way Kambas & Konservasi Gajah (1H)">TN Way Kambas Gajah (1H)</option>
-                                        <option value="Study Tour Yogyakarta - Borobudur - Malioboro (4H3M)">Study Tour Jogja & Borobudur (4H3M)</option>
-                                        <option value="Kunjungan Industri Bandung - Jakarta (4H3M)">Kunjungan Industri Bandung (4H3M)</option>
-                                        <option value="Eksplorasi Bromo Sunrise & Malang Batu (4H3M)">Bromo Sunrise & Malang (4H3M)</option>
-                                        <option value="Pesona Pulau Bali & Tanah Lot (5H4M)">Pesona Bali & Nusa Penida (5H4M)</option>
-                                        <option value="Paket Kustom Rombongan Khusus (Sesuai Permintaan)">Paket Kustom Khusus Rombongan</option>
-                                    </select>
-                                </div>
-                                <span class="text-[10px] text-slate-400 block">Fasilitas All-In: Bus, Makan, Hotel, Guide</span>
-                            </div>
-
-                            <!-- Field 2: Tipe Rombongan -->
-                            <div class="space-y-1.5 text-left">
-                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
-                                    <span>👥</span>
-                                    <span>Kategori Rombongan</span>
-                                </label>
-                                <div class="relative">
-                                    <select x-model="tourType" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
-                                        <option value="Rombongan Kunjungan Kerja Dinas / BUMN / Kantor">BUMN / Dinas Pemda / Kantor</option>
-                                        <option value="Study Tour Sekolah (SD / SMP / SMA)">Study Tour Sekolah (SMP/SMA)</option>
-                                        <option value="Rombongan Kampus / Organisasi Mahasiswa">Kampus & Organisasi Mahasiswa</option>
-                                        <option value="Wisata Keluarga Besar & Komunitas">Keluarga Besar / Komunitas</option>
-                                        <option value="Rombongan Privat Khusus">Rombongan Privat Eksklusif</option>
-                                    </select>
-                                </div>
-                                <span class="text-[10px] text-slate-400 block">Disesuaikan dengan kebutuhan acara</span>
-                            </div>
-
-                            <!-- Field 3: Jumlah Peserta -->
-                            <div class="space-y-1.5 text-left">
-                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
-                                    <span>🎟️</span>
-                                    <span>Estimasi Peserta</span>
-                                </label>
-                                <div class="relative">
-                                    <select x-model="tourPax" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
-                                        <option value="Kurang dari 15 Orang (HiAce Premio)">Kurang dari 15 Orang (HiAce)</option>
-                                        <option value="15 - 35 Orang (Medium Bus)">15 - 35 Orang (Medium Bus)</option>
-                                        <option value="35 - 50 Orang (1 Big Bus SHD)">35 - 50 Orang (1 Big Bus)</option>
-                                        <option value="50 - 100 Orang (2 Big Bus Konvoi)">50 - 100 Orang (2 Big Bus)</option>
-                                        <option value="Lebih dari 100 Orang (Multi Bus Instansi)">Lebih dari 100 Orang (Konvoi Instansi)</option>
-                                    </select>
-                                </div>
-                                <span class="text-[10px] text-slate-400 block">Tersedia diskon khusus rombongan</span>
-                            </div>
-
-                            <!-- Field 4: Rencana Waktu -->
-                            <div class="space-y-1.5 text-left">
-                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
-                                    <span>📅</span>
-                                    <span>Rencana Waktu</span>
-                                </label>
-                                <div>
-                                    <input type="date" x-model="tourDate" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition">
-                                </div>
-                                <span class="text-[10px] text-slate-400 block">Bisa fleksibel / menyesuaikan jadwal dinas</span>
-                            </div>
-
-                        </div>
-
-                        <!-- CTA Action Bar for Tour -->
-                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-100">
-                            <div class="text-left text-xs text-slate-500 flex items-center space-x-2">
-                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                <span>Proposal penawaran resmi & Rundown harian dikirim cepat via WA</span>
-                            </div>
-                            <button @click="submitTour()"
-                                    type="button"
-                                    class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2.5 transition transform hover:-translate-y-0.5 cursor-pointer">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                                <span>Konsultasi Rundown & Proposal Penawaran</span>
-                                <span>→</span>
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- 4 Pillars Guarantee & Fast Navigation Badges -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-6 text-left">
-                    <div class="flex items-center space-x-3 bg-white/[0.07] backdrop-blur-md border border-white/10 p-3 rounded-2xl">
-                        <span class="text-xl shrink-0">🛡️</span>
-                        <div>
-                            <div class="text-xs font-bold text-white">Lolos Uji KIR & Resmi</div>
-                            <div class="text-[10px] text-slate-300">Berizin Kemenhub & Terawat</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3 bg-white/[0.07] backdrop-blur-md border border-white/10 p-3 rounded-2xl">
-                        <span class="text-xl shrink-0">❄️</span>
-                        <div>
-                            <div class="text-xs font-bold text-white">Full AC & Reclining</div>
-                            <div class="text-[10px] text-slate-300">Smart TV, Karaoke & USB</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3 bg-white/[0.07] backdrop-blur-md border border-white/10 p-3 rounded-2xl">
-                        <span class="text-xl shrink-0">👨‍✈️</span>
-                        <div>
-                            <div class="text-xs font-bold text-white">Kru & Driver Ramah</div>
-                            <div class="text-[10px] text-slate-300">Berpengalaman Trans Jawa-Sumatera</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-3 bg-white/[0.07] backdrop-blur-md border border-white/10 p-3 rounded-2xl">
-                        <span class="text-xl shrink-0">⚡</span>
-                        <div>
-                            <div class="text-xs font-bold text-white">Respon SPK 24 Jam</div>
-                            <div class="text-[10px] text-slate-300">Invoice & Penawaran Resmi Cepat</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Alternative Links -->
-                <div class="pt-6 flex flex-wrap items-center justify-center gap-4 text-xs">
-                    <a href="{{ route('packages.index') }}" class="text-sky-300 hover:text-white font-semibold flex items-center space-x-1.5 transition underline underline-offset-4">
-                        <span>Lihat Seluruh Katalog Paket Wisata</span>
-                        <span>→</span>
-                    </a>
-                    <span class="text-slate-500">•</span>
-                    <a href="{{ route('services') }}" class="text-amber-300 hover:text-white font-semibold flex items-center space-x-1.5 transition underline underline-offset-4">
-                        <span>Spesifikasi & Foto Lengkap Armada Bus</span>
-                        <span>→</span>
-                    </a>
-                </div>
-
-            </div>
-
         </div>
     </section>
 
