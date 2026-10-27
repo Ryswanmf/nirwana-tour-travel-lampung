@@ -26,135 +26,341 @@
     }
 }">
 
-    <!-- HERO SECTION (INTERACTIVE 3D TOUR BUS DRIVING DIORAMA) -->
-    <section class="relative bg-[#08101E] text-white overflow-hidden py-16 sm:py-20 lg:py-24 border-b border-white/5">
-        <!-- Ambient Atmospheric Lighting Glows -->
-        <div class="absolute -top-40 -left-40 w-96 h-96 bg-[#0284C7]/20 rounded-full blur-[128px] pointer-events-none"></div>
-        <div class="absolute top-1/2 right-10 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none"></div>
-        <div class="absolute -bottom-20 left-1/3 w-80 h-80 bg-sky-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <!-- HERO SECTION: INTERACTIVE FLEET & DESTINATION BOOKING BAR (TRAVELOKA STYLE) -->
+    <section class="relative bg-[#061224] text-white overflow-hidden py-14 sm:py-20 lg:py-24 border-b border-white/10">
+        <!-- Background Cinematic Photographic Overlay with Ambient Glows -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity scale-105 pointer-events-none"
+             style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#061224]/90 via-[#0A1B36]/85 to-[#061224] pointer-events-none"></div>
+
+        <!-- Ambient Luxury Radial Glows -->
+        <div class="absolute -top-32 left-1/4 w-[500px] h-[500px] bg-[#0284C7]/20 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute top-1/2 -right-20 w-[450px] h-[450px] bg-amber-500/15 rounded-full blur-[130px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-                
-                <!-- Left Column: Editorial Tourism Storytelling & Action -->
-                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
-                    
-                    <!-- Official Badge -->
-                    <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/[0.07] backdrop-blur-md border border-white/10 text-xs font-semibold text-amber-300 shadow-sm">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span>Biro Wisata Resmi & Sewa Bus Pariwisata Lampung</span>
-                    </div>
+            
+            <!-- Hero Header: Typography & Trust Signals -->
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-8 sm:mb-12">
+                <!-- Verified Official Bureau Badge -->
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-amber-300 shadow-md">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Biro Perjalanan Wisata Resmi & Penyedia Armada Bus Eksekutif Lampung</span>
+                </div>
 
-                    <!-- Editorial Headline -->
-                    <h1 class="text-3xl sm:text-5xl lg:text-[52px] font-extrabold tracking-tight leading-[1.15]">
-                        Kemanapun Tujuannya,
-                        <span class="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 font-normal my-1">
-                            Kenyamanan Rombongan
-                        </span>
-                        Adalah Cerita Terbaik Kami.
-                    </h1>
+                <!-- Grand Title -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
+                    Jelajahi Dunia,
+                    <span class="block font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 font-normal my-1">
+                        Ciptakan Cerita Tak Terlupakan
+                    </span>
+                    Bersama Nirwana Tour
+                </h1>
 
-                    <!-- Authentic Storytelling Paragraph -->
-                    <p class="text-sm sm:text-base text-slate-300 max-w-xl leading-relaxed mx-auto lg:mx-0">
-                        Bersama armada bus pariwisata Nirwana Tour yang terawat, dingin, dan dikemudikan driver profesional berpengalaman. Menemani karya wisata sekolah, study tour kampus, kunjungan dinas BUMN, serta liburan keluarga ke seluruh destinasi Lampung dan Nusantara.
-                    </p>
+                <!-- Subtitle -->
+                <p class="text-sm sm:text-base lg:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                    Spesialis sewa armada bus pariwisata (Big Bus SHD 50 Seat, HiAce Premio), paket liburan bahari Pahawang-Kiluan, study tour edukatif, hingga kunjungan kerja dinas dan BUMN.
+                </p>
+            </div>
 
-                    <!-- 4 Fitur Armada Bus Eksekutif -->
-                    <div class="grid grid-cols-2 gap-2.5 max-w-lg mx-auto lg:mx-0 text-left pt-1">
-                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
-                            <span class="text-amber-400 text-sm">🛡️</span>
-                            <span class="font-semibold truncate">Lolos Uji KIR & Resmi</span>
-                        </div>
-                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
-                            <span class="text-sky-400 text-sm">❄️</span>
-                            <span class="font-semibold truncate">Full AC & Reclining Seat</span>
-                        </div>
-                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
-                            <span class="text-emerald-400 text-sm">🎤</span>
-                            <span class="font-semibold truncate">Smart TV & Karaoke</span>
-                        </div>
-                        <div class="flex items-center space-x-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl text-xs text-slate-200">
-                            <span class="text-amber-400 text-sm">⚡</span>
-                            <span class="font-semibold truncate">USB Charger Tiap Kursi</span>
-                        </div>
-                    </div>
+            <!-- INTERACTIVE BOOKING BAR COMPONENT (TRAVELOKA / TIKET STYLE) -->
+            <div x-data="{
+                activeTab: 'bus',
+                // Bus form fields
+                busType: 'Big Bus SHD (45 - 50 Seats)',
+                busPickup: 'Bandar Lampung (Kota / Bandara Radin Inten II)',
+                busDestination: 'Rute Wisata Bahari Lampung (Pahawang / Kiluan)',
+                busDate: '',
+                busDuration: '3 Hari 2 Malam',
+                // Tour package form fields
+                tourPackage: 'Eksotisme Snorkeling Pulau Pahawang & Kelagian (3H2M)',
+                tourType: 'Rombongan Kunjungan Kerja Dinas / BUMN / Kantor',
+                tourPax: '35 - 50 Orang (1 Big Bus SHD)',
+                tourDate: '',
 
-                    <!-- Interactive Quick Search / Filter Bar -->
-                    <div class="pt-2 max-w-xl mx-auto lg:mx-0">
-                        <form action="{{ route('packages.index') }}" method="GET" class="bg-white/10 backdrop-blur-xl p-2 rounded-2xl border border-white/15 shadow-2xl flex flex-col sm:flex-row gap-2">
-                            <div class="flex-grow flex items-center px-3 py-2 bg-white/5 rounded-xl border border-white/5">
-                                <svg class="w-4 h-4 text-amber-400 shrink-0 mr-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                                <select name="category" class="bg-transparent text-white text-xs font-semibold focus:outline-none w-full cursor-pointer [&>option]:text-slate-800">
-                                    <option value="">Semua Destinasi & Sewa Armada</option>
-                                    <option value="armada">Sewa Big Bus SHD 50 Seat / HiAce</option>
-                                    <option value="lampung">Wisata Bahari Lampung (Pahawang, Kiluan)</option>
-                                    <option value="edukasi">Study Tour & Kunjungan Industri</option>
-                                    <option value="nusantara">Wisata Nusantara (Jogja, Bromo, Bajo)</option>
-                                </select>
+                submitBus() {
+                    const text = encodeURIComponent(
+                        'Halo Admin Nirwana Tour Lampung,\n\nSaya ingin menanyakan ketersediaan dan penawaran Sewa Armada Bus Pariwisata dengan rincian berikut:\n' +
+                        '• Jenis Armada: ' + this.busType + '\n' +
+                        '• Titik Penjemputan: ' + this.busPickup + '\n' +
+                        '• Rute / Destinasi Tujuan: ' + this.busDestination + '\n' +
+                        '• Tanggal Keberangkatan: ' + (this.busDate || 'Fleksibel / Sesuai Jadwal') + '\n' +
+                        '• Durasi Pemakaian: ' + this.busDuration + '\n\n' +
+                        'Mohon informasi ketersediaan unit dan estimasi penawaran harga resminya. Terima kasih!'
+                    );
+                    window.open('https://wa.me/{{ $waNumber }}?text=' + text, '_blank');
+                },
+
+                submitTour() {
+                    const text = encodeURIComponent(
+                        'Halo Admin Nirwana Tour Lampung,\n\nSaya tertarik konsultasi Paket Wisata Rombongan dengan rincian berikut:\n' +
+                        '• Pilihan Paket: ' + this.tourPackage + '\n' +
+                        '• Kategori Rombongan: ' + this.tourType + '\n' +
+                        '• Estimasi Jumlah Peserta: ' + this.tourPax + '\n' +
+                        '• Rencana Tanggal / Bulan: ' + (this.tourDate || 'Fleksibel / Sesuai Jadwal') + '\n\n' +
+                        'Mohon kirimkan detail susunan acara (rundown itinerary) dan proposal penawaran resminya. Terima kasih!'
+                    );
+                    window.open('https://wa.me/{{ $waNumber }}?text=' + text, '_blank');
+                }
+            }" class="max-w-5xl mx-auto">
+
+                <!-- Tab Selector Buttons -->
+                <div class="flex items-center space-x-2 p-1.5 bg-black/40 backdrop-blur-xl rounded-2xl w-fit mx-auto mb-4 border border-white/10 shadow-lg">
+                    <button @click="activeTab = 'bus'"
+                            type="button"
+                            :class="activeTab === 'bus' ? 'bg-[#0284C7] text-white shadow-lg shadow-sky-500/30' : 'text-slate-300 hover:text-white hover:bg-white/5'"
+                            class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition">
+                        <span class="text-base sm:text-lg">🚌</span>
+                        <span>Sewa Bus Pariwisata</span>
+                    </button>
+                    <button @click="activeTab = 'tour'"
+                            type="button"
+                            :class="activeTab === 'tour' ? 'bg-[#0284C7] text-white shadow-lg shadow-sky-500/30' : 'text-slate-300 hover:text-white hover:bg-white/5'"
+                            class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center space-x-2 transition">
+                        <span class="text-base sm:text-lg">🏝️</span>
+                        <span>Paket Wisata & Study Tour</span>
+                    </button>
+                </div>
+
+                <!-- Main Glassmorphism Form Card -->
+                <div class="bg-white/95 backdrop-blur-2xl rounded-3xl p-5 sm:p-7 shadow-2xl border border-white/40 text-slate-800">
+
+                    <!-- TAB 1: SEWA BUS PARIWISATA -->
+                    <div x-show="activeTab === 'bus'" x-cloak class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            
+                            <!-- Field 1: Jenis Armada -->
+                            <div class="space-y-1.5 text-left">
+                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
+                                    <span>🚌</span>
+                                    <span>Pilihan Armada</span>
+                                </label>
+                                <div class="relative">
+                                    <select x-model="busType" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
+                                        <option value="Big Bus SHD (45 - 50 Seats)">Big Bus SHD (45 - 50 Seats)</option>
+                                        <option value="Medium Bus Pariwisata (31 - 35 Seats)">Medium Bus (31 - 35 Seats)</option>
+                                        <option value="Toyota HiAce Premio Luxury (14 Seats)">Toyota HiAce Premio (14 Seats)</option>
+                                        <option value="Toyota HiAce Commuter (14 - 15 Seats)">Toyota HiAce Commuter (15 Seats)</option>
+                                        <option value="All-New Innova Reborn (7 Seats)">All-New Innova Reborn (7 Seats)</option>
+                                    </select>
+                                </div>
+                                <span class="text-[10px] text-slate-400 block">Unit terbaru, full AC & reclining seats</span>
                             </div>
-                            <button type="submit" class="px-6 py-3 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] text-white font-bold text-xs shadow-md transition flex items-center justify-center space-x-2 shrink-0">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                                <span>Cari Paket</span>
+
+                            <!-- Field 2: Lokasi Penjemputan -->
+                            <div class="space-y-1.5 text-left">
+                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
+                                    <span>📍</span>
+                                    <span>Titik Penjemputan</span>
+                                </label>
+                                <div class="relative">
+                                    <select x-model="busPickup" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
+                                        <option value="Bandar Lampung (Kota / Bandara Radin Inten II)">Bandar Lampung (Kota / Bandara)</option>
+                                        <option value="Kota Metro & Lampung Tengah">Kota Metro & Lampung Tengah</option>
+                                        <option value="Pelabuhan Bakauheni / Lampung Selatan">Pelabuhan Bakauheni / Lamsel</option>
+                                        <option value="Kotabumi / Lampung Utara">Kotabumi / Lampung Utara</option>
+                                        <option value="DKI Jakarta & Jabodetabek">DKI Jakarta & Jabodetabek</option>
+                                        <option value="Palembang / Sumatera Selatan">Palembang / Sumatera Selatan</option>
+                                        <option value="Titik Jemput Kustom (Sesuai Permintaan)">Titik Jemput Kustom (Lainnya)</option>
+                                    </select>
+                                </div>
+                                <span class="text-[10px] text-slate-400 block">Bisa dijemput di kantor / sekolah / rumah</span>
+                            </div>
+
+                            <!-- Field 3: Rute / Destinasi Tujuan -->
+                            <div class="space-y-1.5 text-left">
+                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
+                                    <span>🗺️</span>
+                                    <span>Destinasi Tujuan</span>
+                                </label>
+                                <div class="relative">
+                                    <select x-model="busDestination" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
+                                        <option value="Rute Wisata Bahari Lampung (Pahawang / Kiluan)">Wisata Lampung (Pahawang, Kiluan, Krui)</option>
+                                        <option value="Rute Trans Jawa (Jakarta, Bandung, Jogja, Bromo, Bali)">Trans Jawa (Jakarta, Bandung, Jogja, Bali)</option>
+                                        <option value="Rute Trans Sumatera (Palembang, Jambi, Padang, Medan)">Trans Sumatera (Palembang, Padang, Medan)</option>
+                                        <option value="City Tour & Antar-Jemput Dinas Rombongan Lampung">City Tour & Kegiatan Dinas Lampung</option>
+                                        <option value="Kunjungan Industri & Study Tour Sekolah">Kunjungan Industri & Study Tour</option>
+                                    </select>
+                                </div>
+                                <span class="text-[10px] text-slate-400 block">Jalur Tol Trans Sumatera & Trans Jawa</span>
+                            </div>
+
+                            <!-- Field 4: Tanggal & Durasi -->
+                            <div class="space-y-1.5 text-left">
+                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
+                                    <span>📅</span>
+                                    <span>Tanggal & Durasi</span>
+                                </label>
+                                <div class="grid grid-cols-2 gap-1.5">
+                                    <input type="date" x-model="busDate" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition">
+                                    <select x-model="busDuration" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
+                                        <option value="1 Hari (PP)">1 Hari (PP)</option>
+                                        <option value="2 Hari 1 Malam">2H 1M</option>
+                                        <option value="3 Hari 2 Malam">3H 2M</option>
+                                        <option value="4 Hari 3 Malam">4H 3M</option>
+                                        <option value="5 Hari atau Lebih">5+ Hari</option>
+                                    </select>
+                                </div>
+                                <span class="text-[10px] text-slate-400 block">Pilih tanggal rencana perjalanan</span>
+                            </div>
+
+                        </div>
+
+                        <!-- CTA Action Bar for Bus -->
+                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-100">
+                            <div class="text-left text-xs text-slate-500 flex items-center space-x-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                <span>Unit siap beroperasi • Lolos uji KIR & Berizin Kemenhub</span>
+                            </div>
+                            <button @click="submitBus()"
+                                    type="button"
+                                    class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2.5 transition transform hover:-translate-y-0.5 cursor-pointer">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                                <span>Cek Ketersediaan & Estimasi Harga via WhatsApp</span>
+                                <span>→</span>
                             </button>
-                        </form>
+                        </div>
                     </div>
 
-                    <!-- Main Action CTAs -->
-                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5">
-                        <a href="https://wa.me/{{ $waNumber }}?text=Halo%20Admin%20Nirwana%20Tour,%20saya%20tertarik%20konsultasi%20sewa%20bus%20dan%20paket%20wisata."
-                           target="_blank"
-                           class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2.5 transition transform hover:-translate-y-0.5">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                            <span>Pesan Sewa Bus via WhatsApp</span>
-                        </a>
-                        <a href="{{ route('services') }}"
-                           class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-sm backdrop-blur-md flex items-center justify-center space-x-2 transition">
-                            <span>Spesifikasi Armada Bus</span>
-                            <span>→</span>
-                        </a>
+                    <!-- TAB 2: PAKET WISATA & STUDY TOUR -->
+                    <div x-show="activeTab === 'tour'" x-cloak class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            
+                            <!-- Field 1: Pilihan Paket Wisata -->
+                            <div class="space-y-1.5 text-left">
+                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
+                                    <span>🏝️</span>
+                                    <span>Pilihan Paket Wisata</span>
+                                </label>
+                                <div class="relative">
+                                    <select x-model="tourPackage" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
+                                        <option value="Eksotisme Snorkeling Pulau Pahawang & Kelagian (3H2M)">Pahawang & Kelagian (3H2M)</option>
+                                        <option value="Teluk Kiluan Dolphin Tour & Laguna Gayau (2H1M)">Teluk Kiluan Dolphin Tour (2H1M)</option>
+                                        <option value="Taman Nasional Way Kambas & Konservasi Gajah (1H)">TN Way Kambas Gajah (1H)</option>
+                                        <option value="Study Tour Yogyakarta - Borobudur - Malioboro (4H3M)">Study Tour Jogja & Borobudur (4H3M)</option>
+                                        <option value="Kunjungan Industri Bandung - Jakarta (4H3M)">Kunjungan Industri Bandung (4H3M)</option>
+                                        <option value="Eksplorasi Bromo Sunrise & Malang Batu (4H3M)">Bromo Sunrise & Malang (4H3M)</option>
+                                        <option value="Pesona Pulau Bali & Tanah Lot (5H4M)">Pesona Bali & Nusa Penida (5H4M)</option>
+                                        <option value="Paket Kustom Rombongan Khusus (Sesuai Permintaan)">Paket Kustom Khusus Rombongan</option>
+                                    </select>
+                                </div>
+                                <span class="text-[10px] text-slate-400 block">Fasilitas All-In: Bus, Makan, Hotel, Guide</span>
+                            </div>
+
+                            <!-- Field 2: Tipe Rombongan -->
+                            <div class="space-y-1.5 text-left">
+                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
+                                    <span>👥</span>
+                                    <span>Kategori Rombongan</span>
+                                </label>
+                                <div class="relative">
+                                    <select x-model="tourType" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
+                                        <option value="Rombongan Kunjungan Kerja Dinas / BUMN / Kantor">BUMN / Dinas Pemda / Kantor</option>
+                                        <option value="Study Tour Sekolah (SD / SMP / SMA)">Study Tour Sekolah (SMP/SMA)</option>
+                                        <option value="Rombongan Kampus / Organisasi Mahasiswa">Kampus & Organisasi Mahasiswa</option>
+                                        <option value="Wisata Keluarga Besar & Komunitas">Keluarga Besar / Komunitas</option>
+                                        <option value="Rombongan Privat Khusus">Rombongan Privat Eksklusif</option>
+                                    </select>
+                                </div>
+                                <span class="text-[10px] text-slate-400 block">Disesuaikan dengan kebutuhan acara</span>
+                            </div>
+
+                            <!-- Field 3: Jumlah Peserta -->
+                            <div class="space-y-1.5 text-left">
+                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
+                                    <span>🎟️</span>
+                                    <span>Estimasi Peserta</span>
+                                </label>
+                                <div class="relative">
+                                    <select x-model="tourPax" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition cursor-pointer">
+                                        <option value="Kurang dari 15 Orang (HiAce Premio)">Kurang dari 15 Orang (HiAce)</option>
+                                        <option value="15 - 35 Orang (Medium Bus)">15 - 35 Orang (Medium Bus)</option>
+                                        <option value="35 - 50 Orang (1 Big Bus SHD)">35 - 50 Orang (1 Big Bus)</option>
+                                        <option value="50 - 100 Orang (2 Big Bus Konvoi)">50 - 100 Orang (2 Big Bus)</option>
+                                        <option value="Lebih dari 100 Orang (Multi Bus Instansi)">Lebih dari 100 Orang (Konvoi Instansi)</option>
+                                    </select>
+                                </div>
+                                <span class="text-[10px] text-slate-400 block">Tersedia diskon khusus rombongan</span>
+                            </div>
+
+                            <!-- Field 4: Rencana Waktu -->
+                            <div class="space-y-1.5 text-left">
+                                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider flex items-center space-x-1.5">
+                                    <span>📅</span>
+                                    <span>Rencana Waktu</span>
+                                </label>
+                                <div>
+                                    <input type="date" x-model="tourDate" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0284C7] focus:bg-white transition">
+                                </div>
+                                <span class="text-[10px] text-slate-400 block">Bisa fleksibel / menyesuaikan jadwal dinas</span>
+                            </div>
+
+                        </div>
+
+                        <!-- CTA Action Bar for Tour -->
+                        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-100">
+                            <div class="text-left text-xs text-slate-500 flex items-center space-x-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                <span>Proposal penawaran resmi & Rundown harian dikirim cepat via WA</span>
+                            </div>
+                            <button @click="submitTour()"
+                                    type="button"
+                                    class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold text-sm shadow-xl shadow-emerald-500/25 flex items-center justify-center space-x-2.5 transition transform hover:-translate-y-0.5 cursor-pointer">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                                <span>Konsultasi Rundown & Proposal Penawaran</span>
+                                <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 4 Pillars Guarantee & Fast Navigation Badges -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 pt-6 text-left">
+                    <div class="flex items-center space-x-3 bg-white/[0.07] backdrop-blur-md border border-white/10 p-3 rounded-2xl">
+                        <span class="text-xl shrink-0">🛡️</span>
+                        <div>
+                            <div class="text-xs font-bold text-white">Lolos Uji KIR & Resmi</div>
+                            <div class="text-[10px] text-slate-300">Berizin Kemenhub & Terawat</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-white/[0.07] backdrop-blur-md border border-white/10 p-3 rounded-2xl">
+                        <span class="text-xl shrink-0">❄️</span>
+                        <div>
+                            <div class="text-xs font-bold text-white">Full AC & Reclining</div>
+                            <div class="text-[10px] text-slate-300">Smart TV, Karaoke & USB</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-white/[0.07] backdrop-blur-md border border-white/10 p-3 rounded-2xl">
+                        <span class="text-xl shrink-0">👨‍✈️</span>
+                        <div>
+                            <div class="text-xs font-bold text-white">Kru & Driver Ramah</div>
+                            <div class="text-[10px] text-slate-300">Berpengalaman Trans Jawa-Sumatera</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 bg-white/[0.07] backdrop-blur-md border border-white/10 p-3 rounded-2xl">
+                        <span class="text-xl shrink-0">⚡</span>
+                        <div>
+                            <div class="text-xs font-bold text-white">Respon SPK 24 Jam</div>
+                            <div class="text-[10px] text-slate-300">Invoice & Penawaran Resmi Cepat</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Right Column: Interactive 3D Three.js Bus Driving Scene -->
-                <div class="lg:col-span-6 relative">
-                    <div class="relative w-full h-[450px] sm:h-[500px] lg:h-[560px] flex items-center justify-center">
-                        
-                        <!-- 3D Three.js Bus Canvas Container -->
-                        <div id="travel-bus-canvas" class="w-full h-full cursor-pointer select-none"></div>
-
-                        <!-- Top Floating Glass Badge: Bus Status -->
-                        <div class="absolute top-2 left-2 sm:left-4 bg-[#0F2C59]/85 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 shadow-xl text-left pointer-events-none space-y-1">
-                            <div class="flex items-center space-x-2">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
-                                <span class="text-[10px] font-bold text-emerald-300 uppercase tracking-wider">Armada Beroperasi</span>
-                            </div>
-                            <div class="text-xs font-extrabold text-white">Big Bus SHD & HiAce Premio</div>
-                            <div class="text-[10px] text-slate-300">Siap Jalan Rute Sumatera & Trans Jawa</div>
-                        </div>
-
-                        <!-- Top Right Badge: Destinasi Ikonik -->
-                        <div class="absolute top-2 right-2 sm:right-4 bg-[#0F2C59]/85 backdrop-blur-md p-3 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none hidden sm:block">
-                            <span class="text-[10px] font-bold text-amber-300 uppercase tracking-wider block">Destinasi Favorit</span>
-                            <span class="text-xs font-extrabold text-white">Monas • Borobudur • Pahawang</span>
-                        </div>
-
-                        <!-- Bottom Floating Glass Badge: Trip Stat -->
-                        <div class="absolute bottom-4 right-2 sm:right-4 bg-[#0F2C59]/85 backdrop-blur-md p-3.5 rounded-2xl border border-white/15 shadow-xl text-right pointer-events-none space-y-0.5">
-                            <div class="text-[10px] font-bold text-sky-300 uppercase tracking-wider">Keamanan & Kenyamanan</div>
-                            <div class="text-xs font-extrabold text-white">1.500+ Trip Rombongan Sukses</div>
-                            <div class="text-[10px] text-amber-400 font-semibold">★ 99% Tingkat Kepuasan Pelanggan</div>
-                        </div>
-
-                        <!-- Interactive User Hint Pill -->
-                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/15 text-[10px] font-medium text-slate-300 pointer-events-none flex items-center space-x-1.5 whitespace-nowrap">
-                            <svg class="w-3.5 h-3.5 text-amber-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>
-                            <span>Gerakkan mouse untuk efek 3D • Klik bus untuk klakson!</span>
-                        </div>
-
-                    </div>
+                <!-- Quick Alternative Links -->
+                <div class="pt-6 flex flex-wrap items-center justify-center gap-4 text-xs">
+                    <a href="{{ route('packages.index') }}" class="text-sky-300 hover:text-white font-semibold flex items-center space-x-1.5 transition underline underline-offset-4">
+                        <span>Lihat Seluruh Katalog Paket Wisata</span>
+                        <span>→</span>
+                    </a>
+                    <span class="text-slate-500">•</span>
+                    <a href="{{ route('services') }}" class="text-amber-300 hover:text-white font-semibold flex items-center space-x-1.5 transition underline underline-offset-4">
+                        <span>Spesifikasi & Foto Lengkap Armada Bus</span>
+                        <span>→</span>
+                    </a>
                 </div>
 
             </div>
+
         </div>
     </section>
 
